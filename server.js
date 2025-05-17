@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const indexRoutes = require("./routes/index");
 const app = express();
 const methodOverride = require('method-override');
+require('dotenv').config();
 
 // Middleware para ler dados de formulários
 app.use(express.urlencoded({ extended: true }));
@@ -41,10 +42,12 @@ app.use("/", indexRoutes);
  
 
 
- 
-
 // Iniciar o servidor
 const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+ 
+ 
+ 

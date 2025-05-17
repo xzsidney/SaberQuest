@@ -1,0 +1,120 @@
+<%- include('../../partials/header/header.ejs'); %>
+ 
+
+<body class="fundo-container">
+  <%- include('../../partials/menu/userMenu.ejs'); %>
+  <div class="container text-center">
+    <div class="row align-items-start">
+      <div class="col-md-2">&nbsp;</div>
+      <div class="col-md-8"> 
+        
+        <div class="container mt-5">
+  <div class="card shadow-lg">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Editar Habilidade: <%= skill.name %></h4>
+    </div>
+    <div class="card-body">
+      <form action="/skills/<%= skill.id %>?_method=PUT" method="POST">
+        <div class="row mb-3">
+          <label for="name" class="col-sm-3 col-form-label text-end">Nome</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="name" value="<%= skill.name %>" required>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="description" class="col-sm-3 col-form-label text-end">Descrição</label>
+          <div class="col-sm-9">
+            <textarea class="form-control" name="description" rows="3" required><%= skill.description %></textarea>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+  <label for="type" class="col-sm-3 col-form-label text-end">Tipo de Dano</label>
+  <div class="col-sm-9">
+    <select class="form-select" name="type" required>
+      <option value="Dano Físico" <%= skill.damageType === 'Dano Físico' ? 'selected' : '' %>>Dano Físico</option>
+      <option value="Dano de Longo Alcance" <%= skill.damageType === 'Dano de Longo Alcance' ? 'selected' : '' %>>Dano de Longo Alcance</option>
+      <option value="Dano de Fogo" <%= skill.damageType === 'Dano de Fogo' ? 'selected' : '' %>>Dano de Fogo</option>
+      <option value="Dano Elétrico" <%= skill.damageType === 'Dano Elétrico' ? 'selected' : '' %>>Dano Elétrico</option>
+      <option value="Dano de Gelo" <%= skill.damageType === 'Dano de Gelo' ? 'selected' : '' %>>Dano de Gelo</option>
+      <option value="Dano de Veneno" <%= skill.damageType === 'Dano de Veneno' ? 'selected' : '' %>>Dano de Veneno</option>
+      <option value="Dano Psíquico" <%= skill.damageType === 'Dano Psíquico' ? 'selected' : '' %>>Dano Psíquico</option>
+      <option value="Dano de Sombra" <%= skill.damageType === 'Dano de Sombra' ? 'selected' : '' %>>Dano de Sombra</option>
+      <option value="Dano de Luz" <%= skill.damageType === 'Dano de Luz' ? 'selected' : '' %>>Dano de Luz</option>
+    </select>
+  </div>
+</div>
+
+
+        <div class="row mb-3">
+          <label for="level" class="col-sm-3 col-form-label text-end">Nível</label>
+          <div class="col-sm-9">
+            <input type="number" class="form-control" name="level" value="<%= skill.level %>" required>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="manaCost" class="col-sm-3 col-form-label text-end">Custo de Mana</label>
+          <div class="col-sm-9">
+            <input type="number" class="form-control" name="manaCost" value="<%= skill.manaCost %>" required>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="healthCost" class="col-sm-3 col-form-label text-end">Custo de Vida</label>
+          <div class="col-sm-9">
+            <input type="number" class="form-control" name="healthCost" value="<%= skill.healthCost %>" required>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="damage" class="col-sm-3 col-form-label text-end">Dano</label>
+          <div class="col-sm-9">
+            <input type="number" class="form-control" name="damage" value="<%= skill.damage %>" required>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="range" class="col-sm-3 col-form-label text-end">Alcance (m)</label>
+          <div class="col-sm-9">
+            <input type="number" class="form-control" name="range" value="<%= skill.range %>" required>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="archetype" class="col-sm-3 col-form-label text-end">Arquétipo</label>
+          <div class="col-sm-9">
+            <select class="form-select" name="archetype" required>
+              <option value="Matemático" <%= skill.archetype === 'Matemático' ? 'selected' : '' %>>Matemático</option>
+              <option value="Linguista" <%= skill.archetype === 'Linguista' ? 'selected' : '' %>>Linguista</option>
+              <option value="Historiador" <%= skill.archetype === 'Historiador' ? 'selected' : '' %>>Historiador</option>
+              <option value="Geógrafo" <%= skill.archetype === 'Geógrafo' ? 'selected' : '' %>>Geógrafo</option>
+              <option value="Biólogo" <%= skill.archetype === 'Biólogo' ? 'selected' : '' %>>Biólogo</option>
+              <option value="Químico" <%= skill.archetype === 'Químico' ? 'selected' : '' %>>Químico</option>
+              <option value="Físico" <%= skill.archetype === 'Físico' ? 'selected' : '' %>>Físico</option>
+              <option value="Artista" <%= skill.archetype === 'Artista' ? 'selected' : '' %>>Artista</option>
+              <option value="Educador Físico" <%= skill.archetype === 'Educador Físico' ? 'selected' : '' %>>Educador Físico</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="offset-sm-3 col-sm-9 d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Atualizar</button>
+            <a href="/skills/<%= skill.id %>" class="btn btn-secondary">Cancelar</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+        
+      </div>
+      <div class="col-md-2">&nbsp;</div>
+    </div>
+  </div>
+
+  <%- include('../../partials/footer/footer.ejs'); %>
+</body>

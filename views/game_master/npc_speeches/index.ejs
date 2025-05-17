@@ -1,0 +1,37 @@
+<%- include('../../partials/header/header.ejs'); %>
+ 
+
+<body class="fundo-container">
+  <%- include('../../partials/menu/userMenu.ejs'); %>
+  <div class="container text-center">
+    <div class="row align-items-start">
+      <div class="col-md-2">&nbsp;</div>
+      <div class="col-md-8">
+        
+        <div class="container mt-5">
+  <div class="card shadow-lg">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Lista de Falas dos NPCs</h4>
+    </div>
+    <div class="card-body">
+      <a href="/npc-speeches/new" class="btn btn-success mb-3">Criar Nova Fala</a>
+
+      <div class="list-group">
+        <% speeches.forEach(speech => { %>
+          <a href="/npc-speeches/<%= speech.id %>" class="list-group-item list-group-item-action">
+            <strong><%= speech.npc_name %></strong> — <%= speech.type %>
+          </a>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</div>
+
+        
+      </div>
+      <div class="col-md-2">&nbsp;</div>
+    </div>
+  </div>
+
+  <%- include('../../partials/footer/footer.ejs'); %>
+</body>

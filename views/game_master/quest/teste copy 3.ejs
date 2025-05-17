@@ -1,0 +1,27 @@
+<!-- index.ejs -->
+<%- include('../../partials/header/headerGame.ejs'); %>
+    <%- include('../../partials/menu/menuGame.ejs'); %>
+
+        <div class="container mt-5">
+
+            <div class="containerGame">
+                <div class="game-ui">
+
+                    <div id="playContainer">
+                        <% for (let i=1; i <=10; i++) { %>
+                            <div class="adventure1">
+                                <img src="/img/adventures/03.jpg" alt="Imagem <%= i %>">
+                                <button onclick="play(1)">Play</button>
+                            </div>
+                            <% } %>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        </div>
+
+        </div>
+
+        <%- include('../../partials/footer/footerGameMenu.ejs'); %>
+            <%- include('../../partials/footer/footerGame.ejs'); %>

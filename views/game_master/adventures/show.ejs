@@ -1,0 +1,90 @@
+<%- include('../../partials/header/header.ejs'); %>
+ 
+
+<body class="fundo-container">
+  <%- include('../../partials/menu/userMenu.ejs'); %>
+  <div class="container text-center">
+    <div class="row align-items-start">
+      <div class="col-md-2">&nbsp;</div>
+      <div class="col-md-8">
+        
+        <div class="container mt-5">
+  <div class="card shadow-lg">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Detalhes da Aventura: <%= adventure.name %></h4>
+    </div>
+    <div class="card-body">
+      <h5>Descrição:</h5>
+      <p><%= adventure.description %></p>
+      
+      <h5>Dificuldade:</h5>
+      <p><%= adventure.difficulty %></p>
+
+      <h5>Recompensa:</h5>
+      <p><%= adventure.reward %></p>
+
+      <h5>Requisito:</h5>
+      <p><%= adventure.requirement %></p>
+
+      <h5>Nível:</h5>
+      <p><%= adventure.level %></p>
+
+      <!-- Ações relacionadas à aventura -->
+      <h5>Ações de Aventura:</h5>
+      <div class="list-group">
+        <% adventure.actions.forEach(action => { %>
+          <a href="/adventure-actions/<%= action.id %>" class="list-group-item list-group-item-action">
+            <strong><%= action.name %></strong> — Dificuldade: <%= action.difficulty %>
+          </a>
+        <% }) %>
+      </div>
+
+      <div class="mt-3">
+        <a href="/adventures/<%= adventure.id %>/edit" class="btn btn-warning">Editar Aventura</a>
+        <a href="/adventures" class="btn btn-secondary">Voltar para a Lista</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+        <div class="container mt-5">
+  <div class="card shadow-lg">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Detalhes da Aventura: <%= adventure.name %></h4>
+    </div>
+    <div class="card-body">
+      <p><strong>Descrição:</strong> <%= adventure.description %></p>
+      <p><strong>Dificuldade:</strong> <%= adventure.difficulty %></p>
+      <p><strong>Status:</strong> <%= adventure.status || 'Não Iniciada' %></p>
+
+      <div class="mt-4">
+        <a href="/adventures/<%= adventure.id %>/edit" class="btn btn-warning">Editar</a>
+        <form action="/adventures/<%= adventure.id %>/delete?_method=DELETE" method="POST" style="display:inline-block;">
+          <button type="submit" class="btn btn-danger">Deletar</button>
+        </form>
+        <% if (adventure.status !== 'Iniciada') { %>
+          <form action="/adventures/<%= adventure.id %>/start" method="POST" style="display:inline-block;">
+            <button type="submit" class="btn btn-primary">Iniciar Aventura</button>
+          </form>
+        <% } %>
+        <% if (adventure.status === 'Iniciada') { %>
+          <form action="/adventures/<%= adventure.id %>/complete" method="POST" style="display:inline-block;">
+            <button type="submit" class="btn btn-success">Concluir Aventura</button>
+          </form>
+        <% } %>
+      </div>
+    </div>
+  </div>
+        </div>
+
+        
+      </div>
+      <div class="col-md-2">&nbsp;</div>
+    </div>
+  </div>
+
+  <%- include('../../partials/footer/footer.ejs'); %>
+</body>

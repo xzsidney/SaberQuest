@@ -1,0 +1,86 @@
+<%- include('partials/header/header.ejs'); %>
+
+<body class="fundo-container2">
+  <%- include('partials/menu/menu.ejs'); %>
+  <div class="container text-center">
+    <div class="row align-items-start">
+      <div class="col-md-2">&nbsp;</div>
+      <div class="col-md-8">
+        <div class="w-100 min-vh-100 d-flex align-items-center justify-content-center">
+          <div class="container border border-info screenHome">            
+            <div class="login-container text-center">
+              <h2 class="mb-4">Cadastro de Usuário</h2>
+               <div><p>&nbsp;</p></div>
+              <div id="mensagemErro"></div>
+              <div><p>&nbsp;</p></div>
+              <form action="/usuario" method="POST" id="userForm">
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Name"
+                    name="name"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Email"
+                    name="email"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Senha"
+                    name="password"
+                    required
+                  />
+                </div> 
+                <div> 
+                  <input
+                    class="form-control"
+                    list="datalistOptions"
+                    id="role"
+                    name="role"
+                    placeholder="Informe seu tipo de usuário (Aluno, Professor)"
+                  />
+                  <datalist id="datalistOptions">
+                    <option value="Professor">
+                    <option value="Aluno"> 
+                  </datalist>
+                </div>
+                <div><p>&nbsp;</p></div>
+                <button type="submit" class="btn btn-primary w-100">
+                  Acessar
+                </button>
+              </form>
+            </div>
+            <p>&nbsp;</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">&nbsp;</div>
+    </div>
+  </div>
+  <%- include('partials/footer/footer.ejs'); %>
+  
+     <script>
+      document.getElementById("userForm").addEventListener("submit", function(event) {
+          const tipoUsuario = document.getElementById("role").value;
+          const mensagemErro = document.getElementById("mensagemErro");
+
+          if (tipoUsuario !== "Professor" && tipoUsuario !== "Aluno") {
+              mensagemErro.textContent = "⚠️ Tipo de usuário inválido! Escolha apenas Professor ou Aluno.";
+              mensagemErro.style.display = "block"; // Exibe a mensagem
+              event.preventDefault(); // Impede o envio do formulário
+          } else {
+              mensagemErro.style.display = "none"; // Esconde a mensagem se estiver tudo certo
+          }
+      });
+  </script>
+</body>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Sucrose</title>
+     <link rel="stylesheet" href="/css/saberQuest.css" />
+    <style>
+        /* Remova os estilos inline que estavam aqui */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="personagem-info">
+            <img src="sucrose.png" alt="Sucrose"> <h2>Sucrose Lv. 70/70</h2>
+            <div class="status">
+                <p>Constelação: C4</p>
+            </div>
+            <div class="atributos">
+                <h3>Atributos</h3>
+                <div class="atributo">
+                    <span class="atributo-nome">Vida Máxima</span>
+                    <span class="atributo-valor"><%= personagem.vida %></span>
+                </div>
+                <div class="atributo">
+                    <span class="atributo-nome">ATK</span>
+                    <span class="atributo-valor"><%= personagem.ataque %></span>
+                </div>
+                <div class="atributo">
+                    <span class="atributo-nome">DEF</span>
+                    <span class="atributo-valor"><%= personagem.defesa %></span>
+                </div>
+                <div class="atributo">
+                    <span class="atributo-nome">Maestria Elemental</span>
+                    <span class="atributo-valor"><%= personagem.maestriaElemental %></span>
+                </div>
+                <div class="atributo">
+                    <span class="atributo-nome">Taxa Crítica</span>
+                    <span class="atributo-valor"><%= personagem.taxaCritica %></span>
+                </div>
+                <div class="atributo">
+                    <span class="atributo-nome">Dano Crítico</span>
+                    <span class="atributo-valor"><%= personagem.danoCritico %></span>
+                </div>
+                <div class="atributo">
+                    <span class="atributo-nome">Recarga de Energia</span>
+                    <span class="atributo-valor"><%= personagem.recargaEnergia %></span>
+                </div>
+                <div class="atributo">
+                    <span class="atributo-nome">Bônus de Dano Anemo</span>
+                    <span class="atributo-valor"><%= personagem.bonusDanoAnemo %></span>
+                </div>
+            </div>
+        </div>
+        <div class="arma-artefatos">
+            <div class="arma">
+                <h3>Arma</h3>
+                <p><strong><%= personagem.arma.nome %></strong> R1 Lv. 70/70</p>
+                <p>ATK Base: <%= personagem.arma.atkBase %></p>
+                <p>Sub-atributo: <%= personagem.arma.subAtributoNome %> +<%= personagem.arma.subAtributoValor %></p>
+            </div>
+            <div class="artefatos">
+                <h3>Artefatos</h3>
+                <% personagem.artefatos.forEach(function(artefato) { %>
+                    <div class="artefato-slot">
+                        <img src="<%= artefato.imagem %>" alt="<%= artefato.nome %>">
+                        <div class="artefato-detalhes">
+                            <p><strong><%= artefato.nome %></strong> <%= artefato.raridade %>★</p>
+                            <% if (artefato.atributoPrincipal) { %>
+                                <p><%= artefato.atributoPrincipal.nome %> +<%= artefato.atributoPrincipal.valor %></p>
+                            <% } %>
+                            <% if (artefato.subAtributos && artefato.subAtributos.length > 0) { %>
+                                <p>Sub-atributos:</p>
+                                <ul>
+                                    <% artefato.subAtributos.forEach(function(subAtributo) { %>
+                                        <li><%= subAtributo.nome %> +<%= subAtributo.valor %></li>
+                                    <% }); %>
+                                </ul>
+                            <% } %>
+                        </div>
+                    </div>
+                <% }); %>
+                <p>Conjunto: <%= personagem.conjuntoArtefatos %></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

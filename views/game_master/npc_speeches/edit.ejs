@@ -1,0 +1,57 @@
+<%- include('../../partials/header/header.ejs'); %>
+ 
+
+<body class="fundo-container">
+  <%- include('../../partials/menu/userMenu.ejs'); %>
+  <div class="container text-center">
+    <div class="row align-items-start">
+      <div class="col-md-2">&nbsp;</div>
+      <div class="col-md-8">
+        
+        <div class="container mt-5">
+  <div class="card shadow-lg">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Editar Fala de <%= speech.npc_name %></h4>
+    </div>
+    <div class="card-body">
+      <form action="/npc-speeches/<%= speech.id %>?_method=PUT" method="POST">
+        <input type="hidden" name="_method" value="PUT">
+        
+        <div class="form-group">
+          <label for="npc_name">Nome do NPC</label>
+          <input type="text" class="form-control" id="npc_name" name="npc_name" value="<%= speech.npcName %>" required>
+        </div>
+        <div class="form-group">
+          <label for="text_physical">Fala Física</label>
+          <textarea class="form-control" id="text_physical" name="text_physical" rows="3" required><%= speech.mentalText %></textarea>
+        </div>
+        <div class="form-group">
+          <label for="text_social">Fala Social</label>
+          <textarea class="form-control" id="text_social" name="text_social" rows="3" required><%= speech.socialText %></textarea>
+        </div>
+        <div class="form-group">
+          <label for="text_mental">Fala Mental</label>
+          <textarea class="form-control" id="text_mental" name="text_mental" rows="3" required><%= speech.mentalText %></textarea>
+        </div>
+        <div class="form-group">
+          <label for="type">Tipo de Fala</label>
+          <select class="form-control" id="type" name="type" required>
+            <option value="happy" <%= speech.type === 'happy' ? 'selected' : '' %>>Alegre</option>
+            <option value="angry" <%= speech.type === 'angry' ? 'selected' : '' %>>Raivoso</option>
+            <option value="neutral" <%= speech.type === 'neutral' ? 'selected' : '' %>>Neutro</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-warning">Atualizar Fala</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+        
+      </div>
+      <div class="col-md-2">&nbsp;</div>
+    </div>
+  </div>
+
+  <%- include('../../partials/footer/footer.ejs'); %>
+</body>

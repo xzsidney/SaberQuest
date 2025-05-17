@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo Estilo Mario</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    
+    <script>
+        let mario;
+        let gravity = 0.8;
+        let marioSpeedY = 0;
+        let isJumping = false;
+
+        function setup() {
+            createCanvas(800, 400);
+            mario = new Character('Mario', 100, height - 50, 50, 50);
+        }
+
+        function draw() {
+            background(135, 206, 250); // Céu azul
+            mario.update();
+            mario.show();
+
+            // Limita a velocidade no eixo Y para simular a gravidade
+            if (mario.y + mario.height < height) {
+                marioSpeedY += gravity;
+            } else {
+                marioSpeedY = 0;
+                isJumping = false;
+            }
+        }
+
+        // Controle de movimento
+        function keyPressed() {
+            if (keyCode === LEFT_ARROW) {
+                mario.move(-5, 0);
+            } else if (keyCode === RIGHT_ARROW) {
+                mario.move(5, 0);
+            } else if (keyCode === UP_ARROW && !isJumping) {
+                marioSpeedY = -15; // Ajuste a força do pulo
+                isJumping = true;
+            }
+        }
+
+        class Character {
+            constructor(name, x, y, width, height) {
+                this.name = name;
+                this.x = x;
+                this.y = y;
+                this.width = width;
+                this.height = height;
+            }
+
+            show() {
+                fill(255, 0, 0); // Cor do Mario
+                rect(this.x, this.y, this.width, this.height);
+                fill(0);
+                textSize(20);
+                textAlign(CENTER, CENTER);
+                text(this.name, this.x + this.width / 2, this.y - 20);
+            }
+
+            move(x, y) {
+                this.x += x;
+                this.y += y;
+            }
+
+            update() {
+                this.y += marioSpeedY;
+            }
+        }
+    </script>
+</body>
+</html>

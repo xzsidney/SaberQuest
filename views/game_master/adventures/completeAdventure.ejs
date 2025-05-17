@@ -1,0 +1,39 @@
+<%- include('../../partials/header/header.ejs'); %>
+ 
+
+<body class="fundo-container">
+  <%- include('../../partials/menu/userMenu.ejs'); %>
+  <div class="container text-center">
+    <div class="row align-items-start">
+      <div class="col-md-2">&nbsp;</div>
+      <div class="col-md-8">
+        
+        <div class="container mt-5">
+  <div class="card shadow-lg">
+    <div class="card-header bg-success text-white">
+      <h4 class="mb-0">Concluir Aventura: <%= adventure.name %></h4>
+    </div>
+    <div class="card-body">
+      <p><strong>Descrição:</strong> <%= adventure.description %></p>
+      <p><strong>Dificuldade:</strong> <%= adventure.difficulty %></p>
+      <p><strong>Status Atual:</strong> <%= adventure.status || 'Não Iniciada' %></p>
+
+      <% if (adventure.status === 'Iniciada') { %>
+        <form action="/adventures/<%= adventure.id %>/complete" method="POST">
+          <button type="submit" class="btn btn-success">Concluir Aventura</button>
+        </form>
+      <% } else { %>
+        <p>A aventura precisa ser iniciada antes de ser concluída.</p>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+        
+      </div>
+      <div class="col-md-2">&nbsp;</div>
+    </div>
+  </div>
+
+  <%- include('../../partials/footer/footer.ejs'); %>
+</body>

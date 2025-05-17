@@ -1,0 +1,56 @@
+<%- include('../../partials/header/header.ejs'); %>
+ 
+
+<body class="fundo-container">
+  <%- include('../../partials/menu/userMenu.ejs'); %>
+  <div class="container text-center">
+    <div class="row align-items-start">
+      <div class="col-md-2">&nbsp;</div>
+      <div class="col-md-8"> 
+        
+<div class="container mt-5">
+  <div class="card shadow-lg">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Editar <%= attribute.name %> </h4>
+    </div>
+    <div class="card-body">
+     <form action="/attributes/<%= attribute.id %>?_method=PUT" method="POST">
+        <div class="row mb-3">
+          <label for="name" class="col-sm-3 col-form-label text-end">Nome</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="name" value="<%= attribute.name %>">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="description" class="col-sm-3 col-form-label text-end">Descrição</label>
+          <div class="col-sm-9">
+            <textarea class="form-control" name="description" rows="3"><%= attribute.description %></textarea>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="levels" class="col-sm-3 col-form-label text-end">Níveis</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="levels" value="<%= attribute.levels %>">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="offset-sm-3 col-sm-9 d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Atualizar</button>
+            <a href="/attributes/<%= attribute.id %>" class="btn btn-secondary">Cancelar</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+      </div>
+      <div class="col-md-2">&nbsp;</div>
+    </div>
+  </div>
+
+  <%- include('../../partials/footer/footer.ejs'); %>
+</body>

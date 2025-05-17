@@ -1,0 +1,35 @@
+<%- include('partials/header/header.ejs'); %>
+
+<body class="fundo-container">
+  <%- include('partials/menu/menu.ejs'); %>
+
+  <!-- Div que vai exibir o fundo do ambiente (ex: sala de aula, pátio, etc.) -->
+  <div class="ambiente2">
+    <!-- A imagem de fundo vai mudar dinamicamente conforme o NPC -->
+  </div>
+  <div class="ambiente" style="background-image: url('<%= fundoAmbiente %>');">
+    <p><%= fundoAmbiente %></p>
+    
+  </div>
+  <div id="respostaNPC" class="resposta-npc">
+    <p><%= respostaNPC || '...' %></p>
+  </div>
+  
+  
+
+  <!-- Espaço para o texto de interação -->
+  <div class="interacao">
+    <div id="respostaNPC" class="resposta-npc">
+      <!-- A resposta do NPC aparecerá aqui -->
+      <p>Olá, jogador! Como posso ajudá-lo?</p>
+    </div>
+    
+
+    <!-- Campo onde o jogador digita sua resposta -->
+    <form action="/interagir" method="POST">
+      <input type="text" name="respostaJogador" placeholder="Digite sua resposta..." required>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+  <%- include('partials/footer/footer.ejs'); %>
+</body>

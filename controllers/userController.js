@@ -60,7 +60,7 @@ const userController = {
         } catch (error) {
           res.status(500).render("auth/login", { error: "Erro ao autenticar." });
         }
-    
+    res.render("user/dashboard", { userData });
   },
 
   // Página de edição dos dados do usuário

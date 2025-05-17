@@ -3,7 +3,7 @@ const { User } = require("../models");
 
 const authController = {
   loginPage: (req, res) => {
-    res.render("auth/login");
+    res.render("auth/login", { error: null });
   },
 
   login: async (req, res) => {

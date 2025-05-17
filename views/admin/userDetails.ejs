@@ -1,49 +1,17 @@
-<!-- index.ejs -->
-<%- include('../partials/header/headerGame.ejs'); %>
-  <%- include('../partials/menu/menuGame.ejs'); %>
+<%- include('../partials/header/header.ejs'); %>
+<%- include('../partials/menu/menuG.ejs'); %>
+<div class="container mt-5">
+  <div class="containerGame">
+    <div class="game-ui">
 
-    <div class="container mt-5">
-
-      <div class="containerGame">
-     <div class="game-ui">  
-
-        <h2>Usuários Cadastrados</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Tipo</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% users.forEach(user => { %>
-      <tr>
-        <td><%= user.id %></td>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.role %></td>
-        <td>
-          <a href="/admin/users/<%= user.id %>/edit">Editar</a>
-          <form action="/admin/users/<%= user.id %>/delete" method="POST" style="display:inline;">
-            <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
-          </form>
-        </td>
-      </tr>
-    <% }); %>
-  </tbody>
-</table>
-
-
-      
-     </div>
+      <h2 style="color:white; text-align:center;">User Details</h2>
+      <div style="color:white; text-align:center;">
+        <p><strong>ID:</strong> <%= user.id %></p>
+        <p><strong>Name:</strong> <%= user.name %></p>
+        <p><strong>Email:</strong> <%= user.email %></p>
+        <p><strong>Role:</strong> <%= user.role %></p>
       </div>
     </div>
-
- 
-
-    <%- include('../partials/footer/footerGameMenu.ejs'); %>
-      <%- include('../partials/footer/footerGame.ejs'); %>
+  </div>
+</div>
+<%- include('../partials/footer/footer.ejs'); %>

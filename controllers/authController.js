@@ -1,65 +1,57 @@
-const bcrypt = require("bcrypt");
-const { User } = require("../models");
+// controllers/authController.js
+const { User } = require('../models');
+const bcrypt = require('bcrypt');
 
 const authController = {
   loginPage: (req, res) => {
-    res.render("auth/login", { error: null });
+    res.render('auth/login', { title: 'Login', error: null });
   },
 
   login: async (req, res) => {
-    const { username, password } = req.body; 
-    
+    const { username, password } = req.body;
+
     try {
-      const userData  = await User.findOne({ where: { username } });
-      if (!userData ) {
-        return res.status(400).render("auth/login", { error: "Usuário não encontrado." });
+      const user = await User.findOne({ where: { username } });
+
+      if (!user) {
+        return res.render('auth/login', { error: 'Usuário não encontrado', title: 'Login' });
       }
 
-      const isPasswordValid = await bcrypt.compare(password, userData .password);
-      if (!isPasswordValid) {
-        return res.status(400).render("auth/login", { error: "Senha incorreta." });
+      const match = await bcrypt.compare(password, user.password);
+      if (!match) {
+        return res.render('auth/login', { error: 'Senha incorreta', title: 'Login' });
       }
 
-      req.session.userId = userData.id;
-      req.session.user = userData.name;
-      req.session.username = userData.username;
-      req.session.email = userData.email;
-      req.session.role = userData.role;
-      req.session.loggedIn = true;
-      res.render("user/dashboard", { userData });
+      // Armazena dados na sessão
+      req.session.userId = user.id;
+      req.session.role = user.role;
+      req.session.user = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role
+      };
+
+      // Redireciona com base na função
+      if (user.role === 'admin') {
+        return res.redirect('/admin/dashboard');
+      } else if (user.role === 'teacher') {
+        return res.redirect('/teacher/dashboard');
+      } else {
+        return res.redirect('/player/dashboard');
+      }
+
     } catch (error) {
-      res.status(500).render("auth/login", { error: "Erro ao autenticar." });
+      console.error(error);
+      res.status(500).send('Erro ao fazer login');
     }
   },
 
   logout: (req, res) => {
-    req.session.destroy();
-    res.redirect("/login");
-  },
+    req.session.destroy(() => {
+      res.redirect('/login');
+    });
+  }
 };
 
 module.exports = authController;
-
-
-/*const bcrypt = require("bcrypt");
-const { Usuario } = require("../models");
-
-const authController = {
-  login: (req, res) => {
-    res.render("login");
-  },
-
-  authenticate: async (req, res) => {
-    const { usuario, senha } = req.body;
-    console.log(usuario, senha);
-    const user = await Usuario.findOne({ where: { usuario } });
-    if (user && bcrypt.compareSync(senha, user.senha)) {
-      req.session.userId = user.id;
-      return res.redirect("/");
-    }
-    res.redirect("/entrar");
-  },
-};
-
-module.exports = authController;
-*/

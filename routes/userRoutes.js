@@ -1,37 +1,17 @@
+// routes/userRoutes.js
 const express = require('express');
 const router = express.Router();
-const userController = require("../controllers/userController.js");
-
-
-// Middleware para proteger as rotas
+const userController = require('../controllers/userController');
 const { isAuthenticated } = require('../middlewares/authMiddleware');
 
-router.get('/profile', isAuthenticated, userController.profile);
-router.get('/dashboard', isAuthenticated, userController.dashboard);
+// Página de cadastro
 router.get('/register', userController.registerPage);
-router.post('/register', userController.register);
+router.post('/register', userController.registerUser);
 
- 
-/*
-// Rota de cadastro
-router.get('/registrar', (req, res) => {
-    // Lógica de login
-     res.render('registrar');
-  });
+// Página de perfil
+router.get('/profile', isAuthenticated, userController.profile);
 
-  router.post("/registrar", userController.createUser);
-  router.get("/usuario/:id", userController.getUser);
-  router.get("/usuario", (req, res) => {
-    if (!req.session.userId) {
-      return res.redirect("/login");
-    }
-    let id = req.session.userId;
+// Atualizar dados do usuário
+router.post('/profile/update', isAuthenticated, userController.updateProfile);
 
-    res.redirect(`/usuario/${id}`);
-    
-  });
-*/
-
- 
- 
 module.exports = router;

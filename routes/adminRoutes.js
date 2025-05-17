@@ -1,15 +1,16 @@
+// routes/adminRoutes.js
 const express = require('express');
 const router = express.Router();
 const adminController = require('../controllers/adminController');
 const { isAdmin } = require('../middlewares/authMiddleware');
+router.get('/admin/dashboard',   adminController.dashboard);
+router.get('/admin/users',  adminController.listUsers);
+router.get('/admin/users/:id',  adminController.userDetails);
 
+
+/*
 router.get('/admin/dashboard', isAdmin, adminController.dashboard);
 router.get('/admin/users', isAdmin, adminController.listUsers);
 router.get('/admin/users/:id', isAdmin, adminController.userDetails);
-
-router.get('/admin/users/:id/edit', isAdmin, adminController.editUserForm);
-router.post('/admin/users/:id/edit', isAdmin, adminController.updateUser);
-router.post('/admin/users/:id/delete', isAdmin, adminController.deleteUser);
-
- 
+*/
 module.exports = router;

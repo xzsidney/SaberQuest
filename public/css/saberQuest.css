@@ -30,63 +30,56 @@ body {
 }
 
 /* ----------------Menu do topo da tela ------------------------------ */
+/* HUD Menu fixo no topo */
 .hud-menu {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #009c3b;
-    /* verde da bandeira */
+    background-color: #009c3b; /* Verde da bandeira */
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 3px solid #0033a0; /* Azul da bandeira */
     z-index: 1000;
-    padding: 10px 0;
 }
 
+/* Botões do menu */
 .hud-menu a {
-    padding: 15px 25px;
-    background-color: #fff;
-    /* branco */
-    color: #0033a0;
-    /* azul da bandeira */
+    padding: 12px 20px;
+    background-color: #ffffff; /* Branco */
+    color: #0033a0; /* Azul */
     text-decoration: none;
     border: 2px solid #0033a0;
-    /* azul da bandeira */
     border-radius: 8px;
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     transition: all 0.3s ease;
+    min-width: 130px;
 }
 
+/* Ícones do menu */
 .hud-menu a i {
-    margin-right: 10px;
-    font-size: 22px;
+    font-size: 20px;
 }
 
+/* Efeito ao passar o mouse */
 .hud-menu a:hover {
-    background-color: #ffcc00;
-    /* amarelo da bandeira */
-    color: #fff;
-    /* texto branco */
+    background-color: #ffcc00; /* Amarelo */
+    color: #ffffff;
     border-color: #ffcc00;
-    /* borda amarela */
-    transform: scale(1.1);
-    box-shadow: 0 0 8px #000;
-}
-
-/* Cor de borda do menu */
-.hud-menu {
-    border-bottom: 3px solid #0033a0;
-    /* azul da bandeira */
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
 }
 
 /* ---------------------------------------------- */
-
-
-/* Estilos para o Footer */
+ 
 /* Estilos para o Footer */
 .footer {
     background-color: #0033a0;
@@ -150,7 +143,7 @@ body {
 /* ****************************  CSS do Game UI */
 .game-ui {
     position: relative;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(46, 80, 31, 0.8);
     border: 5px solid #f0ec19;
     border-radius: 20px;
     width: 80%;
@@ -159,6 +152,7 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    
 }
 
 .game-ui .top-buttons {
@@ -237,208 +231,9 @@ body {
     background-color: rgba(54, 185, 98, 0.5);
     border-top: 3px solid #f0ec19;
 }
-
-.adventureInfo {
-  background-color: rgba(0, 0, 0, 0.5); /* Fundo preto com 50% de opacidade */
-  padding: 20px;
-  border-radius: 10px;
-  color: white;
-  max-width: 750px;
-  margin: 0 auto; 
-}
-
-/* ****************************  CSS da Fala do NPC dentro  Game UI */
-
-
-.npc-dialogue {
-    width: 90%;
-  height: 150px; /* altura fixa para exemplo */
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  position: absolute;
-  bottom: 0;
-  margin-bottom: 140px;
-  background-color: hsla(133, 43%, 33%, 0.3);
-  border: 2px solid #dee6e3;
-  border-radius: 1.5rem;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
-  padding: 10px;
-  box-sizing: border-box;
-  
-
-}
-/* Imagem do NPC */
-.npc-face {
-    
- border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  object-fit: cover; 
-}
-
-.npc-image {
-  flex-shrink: 0;  
-  margin-left: auto;  
-   margin-right: 50px; /* adiciona um espaçamento entre imagem e texto */
-}
-
-
-/* Estilo do texto da fala */
-.npc-text {
-    color: white;
-  font-size: 1.8rem;
-   width: 100%;
-  max-width: 90%;   
-  height: 100%;     
-  overflow-y: auto;   
-  padding: 8px;
-  box-sizing: border-box;
-   scrollbar-width: none;  
-    -ms-overflow-style: none;   
-}
- /*
  
- */
-/* Esconde o div na página Game */
-.hidden {
-  display: none !important;
+a.text-light:hover,
+a.text-warning:hover {
+  text-decoration: underline;
+  opacity: 0.9;
 }
-
- 
-#playContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-    padding: 30px;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.adventure1 {
-    background-color: #fff;
-    border: 5px solid #555;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    transition: transform 0.2s;
-}
-
-.adventure1:hover {
-    transform: scale(1.05);
-}
-
-.adventure1 img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 4px;
-}
-
-.adventure1 button {
-    margin-top: 10px;
-    padding: 6px 12px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.adventure1 button:hover {
-    background-color: #0056b3;
-}
-
-/*  CSS para o Personagem  */ 
-.char-ui{
-    position: relative;
-    background-color: rgba(11, 146, 22, 0.8);
-    border: 5px solid #f1f50c;
-    border-radius: 20px;
-    width: 80%;
-    height: 90vh;
-    box-shadow: 0 0 20px #000;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    color: #fff;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    transition: transform 0.2s;
-     display: flex;
-  gap: 20px; 
-    
-}
-    
- .char-info {
-  background-color: rgba(0, 0, 0, 0.5); /* fundo escuro sem afetar o texto */
-  padding: 20px;
-  border-radius: 15px; 
-  text-align: left;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  box-shadow: 0 0 10px #000;
-}
-
-.char-image {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.char-face {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid #fff;
-  box-shadow: 0 0 10px #000;
-}
-
-.char-skills {
-   background-color: rgba(0, 0, 0, 0.4);
-  padding: 15px 20px;
-  border-radius: 15px; 
-  box-shadow: 0 0 10px #000;
-  text-align: left;
-  color: #fff;
-  flex: 1;              /* para dividir o espaço igualmente com char-info */
-  box-sizing: border-box;
-}
-
-.char-skills h3 {
-  margin-bottom: 10px;
-  font-size: 18px;
-  border-bottom: 1px solid #ffffff55;
-  padding-bottom: 5px;
-}
-
-.char-skills ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.char-skills li {
-  margin-bottom: 8px;
-  font-size: 16px;
-}
-
-.char-container {
-     
-  width: 90%;
-  box-sizing: border-box; /* para a borda entrar no cálculo do width */
-  margin: 0 auto; /* centraliza horizontalmente, opcional */
-  
-}
-
- 
- 
-

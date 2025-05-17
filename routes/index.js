@@ -1,12 +1,20 @@
 const express = require('express');
 const router = express.Router();
+const homeRoutes = require('./homeRoutes');  
+const adminRoutes = require('./adminRoutes');
+const playerRoutes = require('./playerRoutes');
+const userRoutes = require('./userRoutes'); 
+const authRoutes = require('./authRoutes'); 
+router.use('/', homeRoutes);
+router.use('/', adminRoutes);
+router.use('/', playerRoutes);
+router.use('/', userRoutes);
+router.use('/', authRoutes);
 
-// Rota Home (principal)
-router.get('/', (req, res) => {
-  res.render('home');
-});
+module.exports = router;
+ 
 
- /****************** Router ************/
+ /****************** Router *********** 
 const authRoutes = require('./authRoutes'); 
 const profileRoutes = require('./profileRoutes'); 
 const provaRoutes = require('./provaRoutes'); 
@@ -41,4 +49,4 @@ router.use('/', character);
 
  
 // Exportando o roteador para ser utilizado no app.js
-module.exports = router;
+

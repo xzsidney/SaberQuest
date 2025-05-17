@@ -1,0 +1,37 @@
+<!-- index.ejs -->
+<%- include('../partials/header/headerGame.ejs'); %>
+  <%- include('../partials/menu/menuGame.ejs'); %>
+
+    <div class="container mt-5">
+
+      <div class="containerGame">
+        <div class="game-ui">
+
+           <h2>Editar Usuário</h2>
+<form action="/admin/users/<%= user.id %>/edit" method="POST">
+  <label>Nome:</label>
+  <input type="text" name="name" value="<%= user.name %>" required /><br/>
+
+  <label>Email:</label>
+  <input type="email" name="email" value="<%= user.email %>" required /><br/>
+
+  <label>Tipo de usuário:</label>
+  <select name="role">
+    <option value="aluno" <%= user.role === 'aluno' ? 'selected' : '' %>>Aluno</option>
+    <option value="professor" <%= user.role === 'professor' ? 'selected' : '' %>>Professor</option>
+    <option value="admin" <%= user.role === 'admin' ? 'selected' : '' %>>Admin</option>
+  </select><br/>
+
+  <button type="submit">Salvar</button>
+</form>
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <%- include('../partials/footer/footerGameMenu.ejs'); %>
+      <%- include('../partials/footer/footerGame.ejs'); %>

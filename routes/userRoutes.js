@@ -11,10 +11,7 @@ router.get('/dashboard', isAuthenticated, userController.dashboard);
 router.get('/register', userController.registerPage);
 router.post('/register', userController.register);
 
-
-router.get('/casa', isAuthenticated, (req, res) => {
-  res.render('casa', { user: req.session.user });
-});
+ 
 /*
 // Rota de cadastro
 router.get('/registrar', (req, res) => {

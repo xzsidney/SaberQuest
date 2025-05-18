@@ -4,7 +4,7 @@ Funcionalidade: Gerenciar personagem e jogar
   Quero criar, visualizar, editar e excluir meu personagem
   Para poder participar das aventuras escolares
 
-  # CREATE -- Estou nessa
+  # CREATE -- ok 
   Cenário: Criar personagem
     Dado que estou logado como jogador
     E acesso a página "Criar Personagem"
@@ -13,14 +13,14 @@ Funcionalidade: Gerenciar personagem e jogar
     Então o personagem deve ser criado
     E deve aparecer na lista de personagens
 
-  # READ
+  # READ  -- ok
   Cenário: Visualizar meus personagens
     Dado que estou logado como jogador
     Quando acesso a página "Meus Personagens"
     Então devo ver todos os personagens que criei
     E posso clicar para ver os detalhes de cada um
 
-  # UPDATE
+  # UPDATE  - ok
   Cenário: Editar personagem
     Dado que estou na tela de detalhes de um personagem
     Quando clico em "Editar"
@@ -28,14 +28,14 @@ Funcionalidade: Gerenciar personagem e jogar
     E clico em "Salvar"
     Então as alterações devem ser salvas corretamente
 
-  # DELETE
+  # DELETE  - ok
   Cenário: Excluir personagem
     Dado que estou na lista de personagens
     Quando clico no botão "Excluir" ao lado de um personagem
     E confirmo a exclusão
     Então o personagem deve ser removido da minha conta
 
-  # GAMEPLAY
+  # GAMEPLAY -- Depende de aventura 
   Cenário: Entrar em uma aventura
     Dado que tenho um personagem criado
     Quando escolho uma narrativa disponível

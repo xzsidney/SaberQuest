@@ -1,166 +1,131 @@
 <%- include('../partials/header/header.ejs'); %>
 <%- include('../partials/menu/menuPlayer'); %>
 
+<style>
+  
+</style>
+
 <div class="container mt-5">
-  <div class="containerGame">
-   <div class="game-ui bg-dark text-white p-4 rounded shadow"
-     style="background-color: rgba(0,0,0,0.85); border: 2px solid #009c3b; max-height: 80vh; overflow-y: auto;">
+  <h2 class="text-center text-white mb-4">✨ Criar Personagem</h2>
 
+  <form action="/characters/create" method="POST" onsubmit="return validatePoints();" class="form-brasil mx-auto" style="max-width: 800px;">
+    <input type="hidden" name="playerId" value="<%= user.id %>">
 
-      <h2 class="text-center mb-4">✨ Criar Personagem</h2>
+    <!-- Nome -->
+    <label>Nome do Personagem</label>
+    <input type="text" name="name" class="form-control" required>
 
-      <form action="/characters/create" method="POST" onsubmit="return validatePoints();" class="w-75 mx-auto">
-        <input type="hidden" name="playerId" value="<%= user.id %>">
+    <!-- Classe Escolar -->
+    <label>Área de Especialização</label>
+    <select name="className" class="form-select">
+      <option value="">Selecione</option>
+      <% ['Matemática','Ciências','História','Geografia','Português','Inglês','Artes','Educação Física'].forEach(c => { %>
+        <option value="<%= c %>"><%= c %></option>
+      <% }); %>
+    </select>
 
-        <!-- Nome -->
-        <div class="mb-3">
-          <label class="form-label">Nome do Personagem</label>
-          <input type="text" class="form-control" name="name" required>
-        </div>
+    <!-- Série Escolar -->
+    <label>Série Escolar</label>
+    <select name="schoolGrade" class="form-select">
+      <% ['1º Ano','2º Ano','3º Ano','Mestrado','Doutorado'].forEach(s => { %>
+        <option value="<%= s %>"><%= s %></option>
+      <% }); %>
+    </select>
 
-        <!-- Imagem -->
-        <div class="mb-3">
-          <label class="form-label">Imagem do Personagem</label>
-          <div style="background-color: #222; border: 1px dashed #666; padding: 30px; text-align: center;">
-            Espaço reservado para futura seleção de avatar ou upload
-          </div>
-        </div>
-
-        <!-- História -->
-        <div class="mb-3">
-          <label class="form-label">História do Personagem</label>
-          <textarea name="biography" class="form-control" rows="3"></textarea>
-        </div>
-
-        <!-- Sexo e Idade -->
-        <div class="row mb-3">
-          <div class="col-md-6">
-            <label class="form-label">Sexo</label>
-            <select class="form-select" name="gender">
-              <option value="">Selecione</option>
-              <option value="Masculino">Masculino</option>
-              <option value="Feminino">Feminino</option>
-              <option value="Outro">Outro</option>
-            </select>
-          </div>
-          <div class="col-md-6">
-            <label class="form-label">Idade</label>
-            <input type="number" name="age" class="form-control" min="6" max="99">
-          </div>
-        </div>
-
-        <!-- Nível, Vida, Mana -->
-        <div class="row mb-3">
-          <div class="col-md-4">
-            <label class="form-label">Nível</label>
-            <input type="number" class="form-control" name="level" value="1" readonly>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">Vida</label>
-            <input type="number" class="form-control" name="hp" value="10" required>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">Mana</label>
-            <input type="number" class="form-control" name="mana" value="10" required>
-          </div>
-        </div>
-
-        <!-- Série e Classe escolar -->
-        <div class="row mb-3">
-          <div class="col-md-6">
-            <label class="form-label">Série Escolar</label>
-            <select class="form-select" name="schoolGrade">
-              <option value="1º Ano">1º Ano</option>
-              <option value="2º Ano">2º Ano</option>
-              <option value="3º Ano">3º Ano</option>
-              <option value="Mestrado">Mestrado</option>
-              <option value="Doutorado">Doutorado</option>
-            </select>
-          </div>
-          <div class="col-md-6">
-            <label class="form-label">Área de Especialização</label>
-            <select class="form-select" name="className">
-              <option value="">Selecione</option>
-              <option value="Matemática">Matemática</option>
-              <option value="Ciências">Ciências</option>
-              <option value="História">História</option>
-              <option value="Geografia">Geografia</option>
-              <option value="Português">Português</option>
-              <option value="Inglês">Inglês</option>
-              <option value="Artes">Artes</option>
-              <option value="Educação Física">Educação Física</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Atributos -->
-        <div class="mb-3">
-          <label class="form-label">Atributos (Distribua exatamente 25 pontos)</label>
-          <div class="row">
-            <div class="col-md-4">
-              <label class="form-label">Força</label>
-              <input type="number" class="form-control" name="strength" min="0" max="10" value="0">
-            </div>
-            <div class="col-md-4">
-              <label class="form-label">Destreza</label>
-              <input type="number" class="form-control" name="dexterity" min="0" max="10" value="0">
-            </div>
-            <div class="col-md-4">
-              <label class="form-label">Constituição</label>
-              <input type="number" class="form-control" name="constitution" min="0" max="10" value="0">
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-md-4">
-              <label class="form-label">Percepção</label>
-              <input type="number" class="form-control" name="perception" min="0" max="10" value="0">
-            </div>
-            <div class="col-md-4">
-              <label class="form-label">Cognição</label>
-              <input type="number" class="form-control" name="cognition" min="0" max="10" value="0">
-            </div>
-            <div class="col-md-4">
-              <label class="form-label">Vontade</label>
-              <input type="number" class="form-control" name="willpower" min="0" max="10" value="0">
-            </div>
-          </div>
-          <small id="pointsLeft" class="form-text text-warning mt-2">Pontos restantes: 25</small>
-        </div>
-
-        <!-- Habilidades -->
-        <div class="mb-3">
-          <label class="form-label">Habilidades Iniciais</label>
-          <input type="text" name="skills" class="form-control" placeholder="Ex: Multiplicação, Lógica, Química...">
-        </div>
-
-        <!-- Itens -->
-        <div class="mb-3">
-          <label class="form-label">Itens Iniciais (formato JSON)</label>
-          <textarea name="items" class="form-control" rows="3" placeholder='Ex: [{"nome":"Livro de Feitiços","quantidade":1}]'></textarea>
-        </div>
-
-        <!-- Botões -->
-        <div class="text-center mt-4">
-          <button type="submit" class="btn btn-success">Salvar Personagem</button>
-          <a href="/player/characters" class="btn btn-secondary ms-2">Cancelar</a>
-        </div>
-      </form>
-
+    <!-- Sexo e Idade -->
+    <div class="row">
+      <div class="col-md-6">
+        <label>Sexo</label>
+        <select name="gender" class="form-select">
+          <option value="">Selecione</option>
+          <option value="Masculino">Masculino</option>
+          <option value="Feminino">Feminino</option>
+          <option value="Outro">Outro</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label>Idade</label>
+        <input type="number" name="age" class="form-control" min="6" max="99">
+      </div>
     </div>
-  </div>
+
+    <!-- Nível, Vida, Mana -->
+    <div class="row">
+      <div class="col-md-4">
+        <label>Nível</label>
+        <input type="number" name="level" class="form-control" value="1" readonly>
+      </div>
+      <div class="col-md-4">
+        <label>Vida</label>
+        <input type="number" name="hp" class="form-control" value="10">
+      </div>
+      <div class="col-md-4">
+        <label>Mana</label>
+        <input type="number" name="mana" class="form-control" value="10">
+      </div>
+    </div>
+
+    <!-- Atributos -->
+    <label>Atributos (Distribua exatamente 25 pontos)</label>
+    <div class="row">
+      <div class="col-md-4">
+        <label>Força</label>
+        <input type="number" name="strength" class="form-control" value="0" min="0" max="10">
+      </div>
+      <div class="col-md-4">
+        <label>Destreza</label>
+        <input type="number" name="dexterity" class="form-control" value="0" min="0" max="10">
+      </div>
+      <div class="col-md-4">
+        <label>Constituição</label>
+        <input type="number" name="constitution" class="form-control" value="0" min="0" max="10">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <label>Percepção</label>
+        <input type="number" name="perception" class="form-control" value="0" min="0" max="10">
+      </div>
+      <div class="col-md-4">
+        <label>Cognição</label>
+        <input type="number" name="cognition" class="form-control" value="0" min="0" max="10">
+      </div>
+      <div class="col-md-4">
+        <label>Vontade</label>
+        <input type="number" name="willpower" class="form-control" value="0" min="0" max="10">
+      </div>
+    </div>
+    <small id="pointsLeft" class="form-text text-warning">Pontos restantes: 25</small>
+
+    <!-- Habilidades -->
+    <label>Habilidades</label>
+    <input type="text" name="skills" class="form-control" placeholder="Ex: Multiplicação, Química, Redação...">
+
+    <!-- Itens -->
+    <label>Itens (formato JSON)</label>
+    <textarea name="items" class="form-control" rows="3" placeholder='[{"nome":"Caderno","quantidade":1,"descricao":"Anotações importantes"}]'></textarea>
+
+    <!-- História -->
+    <label>História do Personagem</label>
+    <textarea name="biography" class="form-control" rows="3"></textarea>
+
+    <!-- Botões -->
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-success">Salvar</button>
+      <a href="/player/characters" class="btn btn-secondary ms-2">Cancelar</a>
+    </div>
+  </form>
 </div>
 
 <%- include('../partials/footer/footer.ejs'); %>
 
 <script>
   function validatePoints() {
-    const inputs = document.querySelectorAll('input[type=number]');
-    let total = 0;
-    inputs.forEach(input => {
-      if (input.name.match(/strength|dexterity|constitution|perception|cognition|willpower/)) {
-        total += parseInt(input.value) || 0;
-      }
-    });
+    const attrs = ['strength', 'dexterity', 'constitution', 'perception', 'cognition', 'willpower'];
+    let total = attrs.reduce((sum, attr) => {
+      const val = parseInt(document.querySelector(`input[name=${attr}]`).value) || 0;
+      return sum + val;
+    }, 0);
     if (total !== 25) {
       alert('Você deve distribuir exatamente 25 pontos entre os atributos.');
       return false;
@@ -170,12 +135,11 @@
 
   document.querySelectorAll('input[type=number]').forEach(input => {
     input.addEventListener('input', () => {
-      let total = 0;
-      document.querySelectorAll('input[type=number]').forEach(i => {
-        if (i.name.match(/strength|dexterity|constitution|perception|cognition|willpower/)) {
-          total += parseInt(i.value) || 0;
-        }
-      });
+      const attrs = ['strength', 'dexterity', 'constitution', 'perception', 'cognition', 'willpower'];
+      let total = attrs.reduce((sum, attr) => {
+        const val = parseInt(document.querySelector(`input[name=${attr}]`).value) || 0;
+        return sum + val;
+      }, 0);
       document.getElementById('pointsLeft').textContent = "Pontos restantes: " + (25 - total);
     });
   });

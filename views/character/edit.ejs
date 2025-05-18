@@ -1,30 +1,112 @@
 <%- include('../partials/header/header.ejs'); %>
 <%- include('../partials/menu/menuPlayer'); %>
 
-<div class="container mt-5 text-white">
-  <h2 class="text-center mb-4">✏️ Editar Personagem</h2>
+<style>
+ 
+</style>
 
-  <form action="/characters/<%= character.id %>/edit" method="POST" class="w-75 mx-auto">
-    <div class="mb-3">
-      <label class="form-label">Nome</label>
-      <input type="text" name="name" value="<%= character.name %>" class="form-control" required>
+<div class="container mt-5">
+  <h2 class="text-center text-white mb-4">✏️ Editar Personagem</h2>
+
+  <form action="/characters/<%= character.id %>/edit" method="POST" class="form-brasil mx-auto" style="max-width: 800px;">
+
+    <!-- Nome -->
+    <label>Nome do Personagem</label>
+    <input type="text" name="name" class="form-control" value="<%= character.name %>" required>
+
+    <!-- Classe -->
+    <label>Área de Especialização</label>
+    <select name="className" class="form-select">
+      <% ['Matemática','Ciências','História','Geografia','Português','Inglês','Artes','Educação Física'].forEach(cls => { %>
+        <option value="<%= cls %>" <%= character.className === cls ? 'selected' : '' %>><%= cls %></option>
+      <% }) %>
+    </select>
+
+    <!-- Série Escolar -->
+    <label>Série Escolar</label>
+    <select name="schoolGrade" class="form-select">
+      <% ['1º Ano','2º Ano','3º Ano','Mestrado','Doutorado'].forEach(s => { %>
+        <option value="<%= s %>" <%= character.schoolGrade === s ? 'selected' : '' %>><%= s %></option>
+      <% }); %>
+    </select>
+
+    <!-- Sexo e Idade -->
+    <div class="row">
+      <div class="col-md-6">
+        <label>Sexo</label>
+        <select name="gender" class="form-select">
+          <% ['Masculino','Feminino','Outro'].forEach(g => { %>
+            <option value="<%= g %>" <%= character.gender === g ? 'selected' : '' %>><%= g %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label>Idade</label>
+        <input type="number" name="age" class="form-control" value="<%= character.age %>">
+      </div>
     </div>
 
-    <div class="mb-3">
-      <label class="form-label">Classe Escolar</label>
-      <select name="className" class="form-select">
-        <option value="Matemática" <%= character.className === 'Matemática' ? 'selected' : '' %>>Matemática</option>
-        <option value="Ciências" <%= character.className === 'Ciências' ? 'selected' : '' %>>Ciências</option>
-        <option value="História" <%= character.className === 'História' ? 'selected' : '' %>>História</option>
-        <option value="Geografia" <%= character.className === 'Geografia' ? 'selected' : '' %>>Geografia</option>
-        <option value="Português" <%= character.className === 'Português' ? 'selected' : '' %>>Português</option>
-        <option value="Inglês" <%= character.className === 'Inglês' ? 'selected' : '' %>>Inglês</option>
-        <option value="Artes" <%= character.className === 'Artes' ? 'selected' : '' %>>Artes</option>
-        <option value="Educação Física" <%= character.className === 'Educação Física' ? 'selected' : '' %>>Educação Física</option>
-      </select>
+    <!-- Vida, Mana, Nível -->
+    <div class="row">
+      <div class="col-md-4">
+        <label>Nível</label>
+        <input type="number" name="level" class="form-control" value="<%= character.level %>" readonly>
+      </div>
+      <div class="col-md-4">
+        <label>Vida (HP)</label>
+        <input type="number" name="hp" class="form-control" value="<%= character.hp %>">
+      </div>
+      <div class="col-md-4">
+        <label>Mana</label>
+        <input type="number" name="mana" class="form-control" value="<%= character.mana %>">
+      </div>
     </div>
 
-    <div class="text-center">
+    <!-- Atributos -->
+    <div class="row">
+      <div class="col-md-4">
+        <label>Força</label>
+        <input type="number" name="strength" class="form-control" value="<%= character.strength %>">
+      </div>
+      <div class="col-md-4">
+        <label>Destreza</label>
+        <input type="number" name="dexterity" class="form-control" value="<%= character.dexterity %>">
+      </div>
+      <div class="col-md-4">
+        <label>Constituição</label>
+        <input type="number" name="constitution" class="form-control" value="<%= character.constitution %>">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <label>Percepção</label>
+        <input type="number" name="perception" class="form-control" value="<%= character.perception %>">
+      </div>
+      <div class="col-md-4">
+        <label>Cognição</label>
+        <input type="number" name="cognition" class="form-control" value="<%= character.cognition %>">
+      </div>
+      <div class="col-md-4">
+        <label>Vontade</label>
+        <input type="number" name="willpower" class="form-control" value="<%= character.willpower %>">
+      </div>
+    </div>
+
+    <!-- Habilidades -->
+    <label>Habilidades</label>
+    <input type="text" name="skills" class="form-control" value="<%= character.skills %>">
+
+    <!-- Itens -->
+    <label>Itens (formato JSON)</label>
+    <textarea name="items" class="form-control" rows="3"><%= JSON.stringify(character.items || [], null, 2) %></textarea>
+
+    <!-- História -->
+    <label>História do Personagem</label>
+    <textarea name="biography" class="form-control" rows="3"><%= character.biography %></textarea>
+
+    <!-- Botões -->
+    <div class="text-center mt-4">
       <button type="submit" class="btn btn-success">Salvar</button>
       <a href="/player/characters" class="btn btn-secondary ms-2">Cancelar</a>
     </div>

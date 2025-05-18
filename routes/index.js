@@ -5,11 +5,13 @@ const adminRoutes = require('./adminRoutes');
 const playerRoutes = require('./playerRoutes');
 const userRoutes = require('./userRoutes'); 
 const authRoutes = require('./authRoutes'); 
+const characterRoutes = require('./characterRoutes'); 
 router.use('/', homeRoutes);
 router.use('/', adminRoutes);
 router.use('/', playerRoutes);
 router.use('/', userRoutes);
 router.use('/', authRoutes);
+router.use('/', characterRoutes);
 
 module.exports = router;
  

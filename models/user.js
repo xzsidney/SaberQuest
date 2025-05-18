@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // Um usuário pode ter vários personagens
       User.hasMany(models.Character, {
-        foreignKey: 'playerId', // <-- esse é o nome usado no model Character
-        as: 'Characters'
+        foreignKey: 'playerId',
+        as: 'characters' // <-- minúsculo (melhor prática)
       });
     }
   }

@@ -1,1 +1,38 @@
-<h1>Character - List Page</h1>
+<%- include('../partials/header/header.ejs'); %>
+<%- include('../partials/menu/menuPlayer'); %>
+
+<div class="container mt-5 text-white">
+  <h2 class="text-center mb-4">🎮 Meus Personagens</h2>
+
+  <!-- Botão para criar novo personagem -->
+  <div class="text-center mb-4">
+    <a href="/characters/create" class="btn btn-success">
+      ✨ Criar Novo Personagem
+    </a>
+  </div>
+
+  <% if (characters.length === 0) { %>
+    <p class="text-center">Você ainda não criou nenhum personagem.</p>
+  <% } else { %>
+    <div class="row">
+      <% characters.forEach(character => { %>
+        <div class="col-md-4 mb-4">
+          <div class="card bg-dark text-white border-light">
+            <div class="card-body">
+              <h5 class="card-title"><%= character.name %></h5>
+              <p class="card-text">Classe: <%= character.className %></p>
+              <p class="card-text">Nível: <%= character.level %></p>
+              <a href="/characters/<%= character.id %>" class="btn btn-outline-light btn-sm">Ver</a>
+              <a href="/characters/<%= character.id %>/edit" class="btn btn-outline-warning btn-sm">Editar</a>
+              <form action="/characters/<%= character.id %>/delete" method="POST" class="d-inline" onsubmit="return confirm('Deseja mesmo excluir este personagem?');">
+                <button class="btn btn-outline-danger btn-sm">Excluir</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</div>
+
+<%- include('../partials/footer/footer.ejs'); %>

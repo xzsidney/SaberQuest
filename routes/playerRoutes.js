@@ -4,11 +4,13 @@ const router = express.Router();
 const playerController = require('../controllers/playerController');
 const { isAuthenticated } = require('../middlewares/authMiddleware');
 
+
+
+
 // Painel principal do jogador
 router.get('/player/dashboard', isAuthenticated, playerController.dashboard);
 
-// Ver todos os personagens do jogador logado
-router.get('/player/characters',  isAuthenticated, playerController.listCharacters);
+ 
 
 // Ver uma aventura
 router.get('/player/adventures', isAuthenticated,  playerController.viewAdventures);

@@ -41,6 +41,18 @@ const userController = {
       res.status(500).send('Erro ao carregar perfil.');
     }
   },
+   editPage: async (req, res) => {
+    try {
+      const user = await User.findByPk(req.session.userId);
+      res.render('user/edit', {
+        title: 'My Profile',
+        user
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Erro ao carregar perfil.');
+    }
+  },
 
   updateProfile: async (req, res) => {
     const { name, email } = req.body;
@@ -54,7 +66,23 @@ const userController = {
       console.error(error);
       res.status(500).send('Erro ao atualizar perfil.');
     }
+  },
+  deleteAccount: async (req, res) => {
+  try {
+    await User.destroy({
+      where: { id: req.session.userId }
+    });
+
+    // Limpa a sessão
+    req.session.destroy(err => {
+      if (err) console.error('Erro ao encerrar sessão:', err);
+      res.redirect('/');
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao excluir conta.');
   }
+}
 };
 
 module.exports = userController;

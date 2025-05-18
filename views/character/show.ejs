@@ -1,1 +1,24 @@
-<h1>Character - Detail Page</h1>
+<%- include('../partials/header/header.ejs'); %>
+<%- include('../partials/menu/menuPlayer'); %>
+
+<div class="container mt-5 text-white">
+  <h2 class="text-center mb-4">🧾 Detalhes do Personagem</h2>
+
+  <table class="table table-dark table-bordered w-75 mx-auto">
+    <tr><th>Nome</th><td><%= character.name %></td></tr>
+    <tr><th>Classe</th><td><%= character.className %></td></tr>
+    <tr><th>Nível</th><td><%= character.level %></td></tr>
+    <tr><th>Força</th><td><%= character.strength %></td></tr>
+    <tr><th>Destreza</th><td><%= character.dexterity %></td></tr>
+    <tr><th>Constituição</th><td><%= character.constitution %></td></tr>
+    <tr><th>Percepção</th><td><%= character.perception %></td></tr>
+    <tr><th>Cognição</th><td><%= character.cognition %></td></tr>
+    <tr><th>Vontade</th><td><%= character.willpower %></td></tr>
+  </table>
+
+  <div class="text-center mt-4">
+    <a href="/player/characters" class="btn btn-secondary">Voltar</a>
+  </div>
+</div>
+
+<%- include('../partials/footer/footer.ejs'); %>

@@ -1,0 +1,34 @@
+<%- include('../partials/header/header.ejs'); %>
+<%- include('../partials/menu/menuPlayer'); %>
+
+<div class="container mt-5 text-white">
+  <h2 class="text-center mb-4">✏️ Editar Personagem</h2>
+
+  <form action="/characters/<%= character.id %>/edit" method="POST" class="w-75 mx-auto">
+    <div class="mb-3">
+      <label class="form-label">Nome</label>
+      <input type="text" name="name" value="<%= character.name %>" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Classe Escolar</label>
+      <select name="className" class="form-select">
+        <option value="Matemática" <%= character.className === 'Matemática' ? 'selected' : '' %>>Matemática</option>
+        <option value="Ciências" <%= character.className === 'Ciências' ? 'selected' : '' %>>Ciências</option>
+        <option value="História" <%= character.className === 'História' ? 'selected' : '' %>>História</option>
+        <option value="Geografia" <%= character.className === 'Geografia' ? 'selected' : '' %>>Geografia</option>
+        <option value="Português" <%= character.className === 'Português' ? 'selected' : '' %>>Português</option>
+        <option value="Inglês" <%= character.className === 'Inglês' ? 'selected' : '' %>>Inglês</option>
+        <option value="Artes" <%= character.className === 'Artes' ? 'selected' : '' %>>Artes</option>
+        <option value="Educação Física" <%= character.className === 'Educação Física' ? 'selected' : '' %>>Educação Física</option>
+      </select>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-success">Salvar</button>
+      <a href="/player/characters" class="btn btn-secondary ms-2">Cancelar</a>
+    </div>
+  </form>
+</div>
+
+<%- include('../partials/footer/footer.ejs'); %>

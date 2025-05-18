@@ -1,15 +1,24 @@
-Funcionalidade: Participar de aventuras
+Funcionalidade: Gerenciar aventuras
+  Como administrador ou professor
+  Quero criar, visualizar, editar e excluir aventuras
+  Para controlar o conteúdo de gameplay narrativo
 
-  Como personagem
-  Quero interagir com ações de uma narrativa
-  Para explorar o mundo escolar e viver desafios
+  Cenário: Criar nova aventura -- OK
+    Dado que estou autenticado como professor
+    Quando acesso a página "Nova Aventura"
+    E preencho os campos nome, descrição, dificuldade, recompensa, requisito e nível
+    E clico em "Salvar"
+    Então a aventura deve ser salva no banco de dados
 
-  Cenário: Iniciar aventura
-    Dado que estou logado como jogador
-    Quando escolho uma narrativa disponível
-    Então sou redirecionado para a tela de aventura
+  Cenário: Editar uma aventura existente OK
+    Dado que estou na lista de aventuras
+    E clico em "Editar" em uma aventura
+    Quando altero o campo descrição
+    E clico em "Salvar"
+    Então as alterações devem ser aplicadas
 
-  Cenário: Realizar ação dentro da narrativa
-    Dado que estou numa aventura
-    Quando seleciono uma ação
-    Então recebo um resultado e avanço na história
+  Cenário: Excluir uma aventura  OK
+    Dado que estou na lista de aventuras
+    Quando clico em "Excluir" em uma aventura
+    E confirmo a exclusão
+    Então a aventura deve ser removida do banco

@@ -1,1 +1,44 @@
-<h1>Adventure - Detail Page</h1>
+<%- include('../partials/header/header.ejs'); %>
+<%- include('../partials/menu/menuPlayer'); %>
+
+<div class="container mt-5">
+  <div class="containerGame">
+    <div class="game-ui bg-dark text-white p-4 rounded shadow" style="background-color: rgba(0, 0, 0, 0.85); border: 2px solid #009c3b; max-width: 800px; margin: auto;">
+
+      <h2 class="text-warning text-center mb-4">🗺️ Missão: <%= adventure.name %></h2>
+
+      <p><strong>Descrição:</strong><br>
+        <span class="text-light"><%= adventure.description %></span>
+      </p>
+
+      <hr class="text-success">
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <p><strong>Dificuldade:</strong> <span class="text-info"><%= adventure.difficulty %></span></p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Nível mínimo:</strong> <span class="text-info"><%= adventure.level %></span></p>
+        </div>
+      </div>
+
+      <p><strong>Recompensa:</strong><br>
+        <span class="text-success">🎁 <%= adventure.reward %></span>
+      </p>
+
+      <p><strong>Pré-requisitos:</strong><br>
+        <span class="text-light"><%= adventure.requirement %></span>
+      </p>
+
+      <div class="text-center mt-4">
+        <a href="/adventures/<%= adventure.id %>/edit" class="btn btn-warning me-2">✏️ Editar</a>
+        <form action="/adventures/<%= adventure.id %>/delete" method="POST" style="display:inline;" onsubmit="return confirm('Deseja mesmo excluir esta aventura?');">
+          <button type="submit" class="btn btn-danger">🗑️ Excluir</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer/footer.ejs'); %>

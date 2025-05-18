@@ -1,1 +1,62 @@
-<h1>Adventure - List Page</h1>
+<%- include('../partials/header/header.ejs'); %>
+<%- include('../partials/menu/menuPlayer'); %>
+
+ 
+<%- include('../partials/header/header.ejs'); %>
+  <%- include('../partials/menu/menuPlayer'); %>
+
+    <div class="container mt-5">
+      <div class="containerGame">
+           <div class="game-ui bg-dark text-white p-4 rounded shadow" style="background-color: rgba(0, 0, 0, 0.85); border: 2px solid #009c3b;">
+    <h2 class="text-warning text-center">Aventuras Criadas</h2>
+
+    <div class="text-end mb-3">
+      <a href="/adventures/create" class="btn btn-success">+ Nova Aventura</a>
+    </div>
+
+    <% if (adventures.length === 0) { %>
+      <p class="text-center">Nenhuma aventura criada ainda.</p>
+    <% } else { %>
+      <table class="table table-dark table-bordered table-hover">
+        <thead>
+          <tr class="table-success text-dark text-center">
+            <th>#</th>
+            <th>Nome</th>
+            <th>Dificuldade</th>
+            <th>Nível</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% adventures.forEach(adventure => { %>
+            <tr>
+              <td><%= adventure.id %></td>
+              <td><%= adventure.name %></td>
+              <td><%= adventure.difficulty %></td>
+              <td><%= adventure.level %></td>
+              <td class="text-center">
+                <a href="/adventures/<%= adventure.id %>" class="btn btn-primary btn-sm">Ver</a>
+                <a href="/adventures/<%= adventure.id %>/edit" class="btn btn-warning btn-sm">Editar</a>
+                <form action="/adventures/<%= adventure.id %>/delete" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta aventura?');">
+                  <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                </form>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } %>
+  </div>
+      </div>
+    </div>
+
+
+
+    <%- include('../partials/footer/footer.ejs'); %>
+
+
+
+
+ 
+
+ 

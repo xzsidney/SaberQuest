@@ -8,7 +8,8 @@ const adminController = {
       const userCount = await User.count();
       res.render("admin/index", {
         title: "Admin Dashboard",
-        totalUsers: userCount
+        user: req.session.user, // 🔥 Aqui está o que faltava
+        totalUsers: userCount,
       });
     } catch (error) {
       console.error(error);
@@ -16,6 +17,7 @@ const adminController = {
     }
   },
 
+ 
   // Listagem de todos os usuários
   listUsers: async (req, res) => {
     try {

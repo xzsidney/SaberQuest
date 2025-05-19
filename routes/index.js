@@ -9,6 +9,8 @@ const characterRoutes = require('./characterRoutes');
 const adventureRoutes = require('./adventureRoutes'); 
 const adventureActionRoutes = require('./adventureActionRoutes'); 
 const actionResultRoutes = require('./actionResultRoutes'); 
+const gameRoutes = require('./gameRoutes'); 
+
 router.use('/', homeRoutes);
 router.use('/', adminRoutes);
 router.use('/', playerRoutes);
@@ -18,6 +20,8 @@ router.use('/', characterRoutes);
 router.use('/', adventureRoutes);
 router.use('/', adventureActionRoutes);
 router.use('/', actionResultRoutes);
+router.use('/', gameRoutes);
+
 
 
 module.exports = router;

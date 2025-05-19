@@ -1,0 +1,67 @@
+<%- include('../partials/header/header.ejs'); %>
+    <%- include('../partials/menu/menuPlayer'); %>
+
+
+        <div class="container mt-5">
+
+            <div class="game-screen">
+                <!-- Botão para exibir/ocultar a aventura -->
+                <button class="btn btn-warning show-adventure-btn" onclick="toggleAdventure()">📖 Ver Aventura</button>
+
+                <!-- Texto da aventura -->
+                <div class="adventure-text" id="adventureBox">
+                    <h5>
+                        <%= adventure.name %>
+                    </h5>
+                    <p>
+                        <%= adventure.description %>
+                    </p>
+                </div>
+
+                <!-- Info da ação -->
+                <div class="info-box" id="action-info">
+                    <strong>Detalhes da Ação:</strong>
+                    <p id="info-text">Passe o mouse em uma ação para ver detalhes.</p>
+                </div>
+
+                <!-- Fala do NPC -->
+                <div class="npc-dialog">
+                    <img src="/img/adventures/01.jpg" alt="NPC" class="npc-face">
+                    <p><strong>Professora:</strong> Bem-vindo ao seu primeiro dia de aula! Escolha como deseja reagir!
+                    </p>
+                </div>
+
+                <!-- Botões de ação -->
+                <div class="action-buttons">
+                    <button onmouseover="showInfo('Usar sua força para mover uma cadeira e impressionar.')"
+                        onclick="chooseAction('physical')">💪 Ação Física</button>
+                    <button onmouseover="showInfo('Converse com seus colegas para fazer amizades.')"
+                        onclick="chooseAction('social')">🗣️ Ação Social</button>
+                    <button onmouseover="showInfo('Responder uma pergunta desafiadora da professora.')"
+                        onclick="chooseAction('mental')">🧠 Ação Mental</button>
+                </div>
+                
+            </div>
+        </div>
+
+        <script>
+            function showInfo(text) {
+                document.getElementById("info-text").innerText = text;
+            }
+
+            function chooseAction(type) {
+                alert("Você escolheu uma ação: " + type.toUpperCase() + " (Aqui virá o teste futuramente)");
+                // Exemplo: redirecionar para rota de teste
+                // window.location.href = `/play/test/${type}`;
+            }
+
+
+            function toggleAdventure() {
+                const box = document.getElementById('adventureBox');
+                box.style.display = box.style.display === 'block' ? 'none' : 'block';
+            }
+
+
+        </script>
+
+        <%- include('../partials/footer/footer.ejs'); %>

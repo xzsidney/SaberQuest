@@ -373,3 +373,105 @@ a.text-warning:hover {
   overflow-y: auto;
   padding-right: 10px;
 }
+
+/*  tela do Play */
+
+  .game-screen {
+    
+    background-color: #111;
+    border: 3px solid #009c3b;
+    padding: 20px;
+    border-radius: 12px;
+    color: white;
+    max-width: 1000px;
+    margin: auto;
+    background-image: url('/img/adventures/03.jpg'); /* Ex: cenário da escola */
+    background-size: cover;
+    background-position: center;
+    min-height: 700px;
+    position: relative;
+    margin-top: 100px;
+    margin-bottom: 100px; 
+  }
+
+  .npc-dialog {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(0,0,0,0.7);
+    border: 2px solid #ffcc00;
+    border-radius: 10px;
+    padding: 15px;
+    width: 600px;
+   
+  }
+
+  .npc-face {
+    width: 64px;
+    height: 64px;
+    float: left;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    object-fit: cover;
+  }
+
+  .action-buttons {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .action-buttons button {
+    background-color: #0033a0;
+    color: white;
+    border: 2px solid #ffcc00;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .action-buttons button:hover {
+    background-color: #ffcc00;
+    color: black;
+  }
+
+  .info-box {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid #ccc;
+    padding: 10px;
+    color: white;
+    max-width: 400px;
+    border-radius: 8px;
+  }
+
+  .adventure-text {
+   position: absolute;
+    top: 60px;
+    left: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    border: 2px dashed #009c3b;
+    color: white;
+    max-width: 400px;
+    border-radius: 10px;
+    display: none;
+    z-index: 9;
+  }
+   .show-adventure-btn {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    z-index: 10;
+    font-weight: bold;
+  }
+
+ 

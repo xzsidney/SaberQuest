@@ -1,0 +1,37 @@
+<%- include('../partials/header/header.ejs'); %>
+<%- include('../partials/menu/menuPlayer'); %>
+
+<div class="container mt-5">
+  <div class="containerGame">
+    <div class="game-ui bg-dark text-white p-4 rounded shadow"
+      style="background-color: rgba(0, 0, 0, 0.85); border: 2px solid #009c3b; max-width: 800px; margin: auto;">
+
+      <h2 class="text-warning text-center mb-4">🧪 Detalhes do Resultado da Ação</h2>
+
+      <p><strong>Nome:</strong> <%= result.name %></p>
+      <p><strong>Descrição do Teste:</strong><br> <%= result.testDescription %></p>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Dificuldade:</strong> <%= result.difficulty %></p>
+          <p><strong>Atributo Utilizado:</strong> <%= result.attributeUsed %></p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Classe Escolar:</strong> <%= result.className %></p>
+          <p><strong>ID Ação Sucesso:</strong> <%= result.successActionId || '---' %></p>
+          <p><strong>ID Ação Falha:</strong> <%= result.failureActionId || '---' %></p>
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <a href="/action-results/<%= result.id %>/edit" class="btn btn-warning me-2">✏️ Editar</a>
+        <form action="/action-results/<%= result.id %>/delete" method="POST" style="display:inline;" onsubmit="return confirm('Deseja excluir este resultado?');">
+          <button type="submit" class="btn btn-danger">🗑️ Excluir</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer/footer.ejs'); %>

@@ -1,0 +1,85 @@
+<%- include('../partials/header/header.ejs'); %>
+  <%- include('../partials/menu/menuPlayer'); %>
+
+    <div class="container mt-5">
+      <div class="containerGame">
+        <div class="game-ui bg-dark text-white p-4 rounded shadow"
+          style="background-color: rgba(0, 0, 0, 0.85); border: 2px solid #009c3b; max-width: 800px; margin: auto;">
+
+          <h2 class="text-warning text-center mb-4">✏️ Editar Resultado de Ação</h2>
+
+          <form action="/action-results/<%= result.id %>/edit" method="POST">
+            <div class="mb-3">
+              <label for="name" class="form-label">Nome do Resultado</label>
+              <input type="text" class="form-control" id="name" name="name" value="<%= result.name %>" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="testDescription" class="form-label">Descrição do Teste</label>
+              <textarea class="form-control" id="testDescription" name="testDescription"
+                rows="3"><%= result.testDescription %></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="difficulty" class="form-label">Dificuldade do Teste</label>
+              <input type="number" class="form-control" id="difficulty" name="difficulty"
+                value="<%= result.difficulty %>" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="attributeUsed" class="form-label">Atributo Utilizado</label>
+              <select class="form-select" id="attributeUsed" name="attributeUsed" required>
+                <option value="">Selecione...</option>
+                <option value="strength" <%=result.attributeUsed==='strength' ? 'selected' : '' %>>Força</option>
+                <option value="dexterity" <%=result.attributeUsed==='dexterity' ? 'selected' : '' %>>Destreza</option>
+                <option value="constitution" <%=result.attributeUsed==='constitution' ? 'selected' : '' %>>Constituição
+                </option>
+                <option value="perception" <%=result.attributeUsed==='perception' ? 'selected' : '' %>>Percepção
+                </option>
+                <option value="cognition" <%=result.attributeUsed==='cognition' ? 'selected' : '' %>>Cognição</option>
+                <option value="willpower" <%=result.attributeUsed==='willpower' ? 'selected' : '' %>>Vontade</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="className" class="form-label">Classe Escolar</label>
+              <select class="form-select" id="className" name="className" required>
+                <option value="">Selecione...</option>
+                <option value="Matemático" <%=result.className==='Matemático' ? 'selected' : '' %>>Matemático</option>
+                <option value="Linguista" <%=result.className==='Linguista' ? 'selected' : '' %>>Linguista</option>
+                <option value="Historiador" <%=result.className==='Historiador' ? 'selected' : '' %>>Historiador
+                </option>
+                <option value="Geógrafo" <%=result.className==='Geógrafo' ? 'selected' : '' %>>Geógrafo</option>
+                <option value="Biólogo" <%=result.className==='Biólogo' ? 'selected' : '' %>>Biólogo</option>
+                <option value="Químico" <%=result.className==='Químico' ? 'selected' : '' %>>Químico</option>
+                <option value="Físico" <%=result.className==='Físico' ? 'selected' : '' %>>Físico</option>
+                <option value="Artista" <%=result.className==='Artista' ? 'selected' : '' %>>Artista</option>
+                <option value="Educador Físico" <%=result.className==='Educador Físico' ? 'selected' : '' %>>Educador
+                  Físico</option>
+              </select>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="successActionId" class="form-label">ID da Ação em caso de Sucesso</label>
+                <input type="number" class="form-control" id="successActionId" name="successActionId"
+                  value="<%= result.successActionId %>">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="failureActionId" class="form-label">ID da Ação em caso de Falha</label>
+                <input type="number" class="form-control" id="failureActionId" name="failureActionId"
+                  value="<%= result.failureActionId %>">
+              </div>
+            </div>
+
+            <div class="text-center mt-4">
+              <button type="submit" class="btn btn-success px-4">Salvar Alterações</button>
+              <a href="/action-results" class="btn btn-secondary ms-2">Cancelar</a>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+    <%- include('../partials/footer/footer.ejs'); %>

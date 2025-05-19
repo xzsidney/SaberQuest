@@ -1,0 +1,68 @@
+<%- include('../partials/header/header.ejs'); %>
+<%- include('../partials/menu/menuPlayer'); %>
+
+<div class="container mt-5">
+  <div class="containerGame">
+
+    <div class="game-ui bg-dark text-white p-4 rounded shadow"
+      style="background-color: rgba(0, 0, 0, 0.85); border: 2px solid #009c3b; max-width: 800px; margin: auto; overflow-y: auto;">
+
+      <h2 class="text-warning text-center mb-4">✏️ Editar Ação de Aventura</h2>
+
+      <form action="/adventure-actions/<%= action.id %>/edit" method="POST">
+        <div class="mb-3">
+          <label for="name" class="form-label">Nome da Ação</label>
+          <input type="text" class="form-control" id="name" name="name" value="<%= action.name %>" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Descrição</label>
+          <textarea class="form-control" id="description" name="description" rows="3"><%= action.description %></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="difficulty" class="form-label">Dificuldade</label>
+          <input type="number" class="form-control" id="difficulty" name="difficulty" min="1" value="<%= action.difficulty %>" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="resultTest" class="form-label">Teste de Resultado</label>
+          <select class="form-select" id="resultTest" name="resultTest" required>
+            <option value="true" <%= action.resultTest ? 'selected' : '' %>>Sim</option>
+            <option value="false" <%= !action.resultTest ? 'selected' : '' %>>Não</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="physicalAction" class="form-label">Ação Física</label>
+            <input type="number" class="form-control" id="physicalAction" name="physicalAction" value="<%= action.physicalAction %>">
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="socialAction" class="form-label">Ação Social</label>
+            <input type="number" class="form-control" id="socialAction" name="socialAction" value="<%= action.socialAction %>">
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="mentalAction" class="form-label">Ação Mental</label>
+            <input type="number" class="form-control" id="mentalAction" name="mentalAction" value="<%= action.mentalAction %>">
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="adventureId" class="form-label">ID da Aventura</label>
+          <input type="number" class="form-control" id="adventureId" name="adventureId" value="<%= action.adventureId %>" required>
+        </div>
+
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-success px-4">Salvar Alterações</button>
+          <a href="/adventure-actions" class="btn btn-secondary ms-2">Cancelar</a>
+        </div>
+      </form>
+
+    </div> 
+ 
+
+  </div>
+</div>
+
+<%- include('../partials/footer/footer.ejs'); %>

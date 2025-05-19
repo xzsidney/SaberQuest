@@ -1,0 +1,79 @@
+<%- include('../partials/header/header.ejs'); %>
+    <%- include('../partials/menu/menuPlayer'); %>
+
+        <div class="container mt-5">
+            <div class="containerGame">
+                <div class="game-ui bg-dark text-white p-4 rounded shadow"
+                    style="background-color: rgba(0, 0, 0, 0.85); border: 2px solid #009c3b; max-width: 800px; margin: auto;">
+
+                    <h2 class="text-warning text-center mb-4">🧪 Criar Resultado de Ação</h2>
+
+                    <form action="/action-results/create" method="POST">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nome do Resultado</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="testDescription" class="form-label">Descrição do Teste</label>
+                            <textarea class="form-control" id="testDescription" name="testDescription" rows="3"
+                                required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="difficulty" class="form-label">Dificuldade do Teste</label>
+                            <input type="number" class="form-control" id="difficulty" name="difficulty" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="attributeUsed" class="form-label">Atributo Utilizado</label>
+                            <select class="form-select" id="attributeUsed" name="attributeUsed" required>
+                                <option value="">Selecione...</option>
+                                <option value="strength">Força</option>
+                                <option value="dexterity">Destreza</option>
+                                <option value="constitution">Constituição</option>
+                                <option value="perception">Percepção</option>
+                                <option value="cognition">Cognição</option>
+                                <option value="willpower">Vontade</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="className" class="form-label">Classe Escolar</label>
+                            <select class="form-select" id="className" name="className" required>
+                                <option value="">Selecione...</option>
+                                <option value="Matemático">Matemático</option>
+                                <option value="Linguista">Linguista</option>
+                                <option value="Historiador">Historiador</option>
+                                <option value="Geógrafo">Geógrafo</option>
+                                <option value="Biólogo">Biólogo</option>
+                                <option value="Químico">Químico</option>
+                                <option value="Físico">Físico</option>
+                                <option value="Artista">Artista</option>
+                                <option value="Educador Físico">Educador Físico</option>
+                            </select>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="successActionId" class="form-label">ID da Ação em caso de Sucesso</label>
+                                <input type="number" class="form-control" id="successActionId" name="successActionId">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="failureActionId" class="form-label">ID da Ação em caso de Falha</label>
+                                <input type="number" class="form-control" id="failureActionId" name="failureActionId">
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-success px-4">Salvar Resultado</button>
+                            <a href="/action-results" class="btn btn-secondary ms-2">Cancelar</a>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <%- include('../partials/footer/footer.ejs'); %>

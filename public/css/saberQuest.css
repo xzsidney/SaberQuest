@@ -366,3 +366,10 @@ a.text-warning:hover {
     width: 100%;
     margin-top: 15px;
   }
+
+  /* ************** Barra de rolagem ******************* */
+  .scrollable-box {
+  height: 400px;
+  overflow-y: auto;
+  padding-right: 10px;
+}

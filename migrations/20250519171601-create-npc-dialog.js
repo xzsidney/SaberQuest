@@ -1,26 +1,27 @@
 'use strict';
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('NpcDialogues', {
+    await queryInterface.createTable('NpcDialogs', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      actionResultId: {
+        type: Sequelize.INTEGER
+      },
       npcName: {
         type: Sequelize.STRING
       },
-      physicalText: {
+      npcType: {
+        type: Sequelize.STRING
+      },
+      dialogText: {
         type: Sequelize.TEXT
       },
-      socialText: {
-        type: Sequelize.TEXT
-      },
-      mentalText: {
-        type: Sequelize.TEXT
-      },
-      type: {
+      npcMood: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -34,6 +35,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('NpcDialogues');
+    await queryInterface.dropTable('NpcDialogs');
   }
 };

@@ -1,18 +1,26 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class ActionResult extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      ActionResult.hasOne(models.NpcDialog, {
+        foreignKey: 'actionResultId',
+        as: 'npcDialog'
+      });
+
+      ActionResult.belongsTo(models.AdventureAction, {
+        foreignKey: 'successActionId',
+        as: 'successAction'
+      });
+
+      ActionResult.belongsTo(models.AdventureAction, {
+        foreignKey: 'failureActionId',
+        as: 'failureAction'
+      });
     }
   }
+
   ActionResult.init({
     name: DataTypes.STRING,
     testDescription: DataTypes.TEXT,
@@ -25,5 +33,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'ActionResult',
   });
+
   return ActionResult;
 };

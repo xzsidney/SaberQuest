@@ -1,4 +1,5 @@
 const { AdventureAction } = require('../models');
+const { Adventure } = require('../models');
 
 const adventureActionController = {
   list: async (req, res) => {
@@ -6,8 +7,17 @@ const adventureActionController = {
     res.render('adventureaction/index', { adventureActions, user: req.session.user });
   },
 
-  createForm: (req, res) => {
-    res.render('adventureaction/create', { user: req.session.user });
+   createForm: async (req, res) => {
+    try {
+      const adventures = await Adventure.findAll();
+      res.render('adventureaction/create', {
+        adventures,
+        user: req.session.user
+      });
+    } catch (error) {
+      console.error('Erro ao carregar aventuras:', error);
+      res.status(500).send('Erro ao exibir formulário.');
+    }
   },
 
   create: async (req, res) => {

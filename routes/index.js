@@ -10,6 +10,10 @@ const adventureRoutes = require('./adventureRoutes');
 const adventureActionRoutes = require('./adventureActionRoutes'); 
 const actionResultRoutes = require('./actionResultRoutes'); 
 const gameRoutes = require('./gameRoutes'); 
+const npcDialogRoutes = require('./npcDialogRoutes'); 
+
+
+
 
 router.use('/', homeRoutes);
 router.use('/', adminRoutes);
@@ -21,6 +25,7 @@ router.use('/', adventureRoutes);
 router.use('/', adventureActionRoutes);
 router.use('/', actionResultRoutes);
 router.use('/', gameRoutes);
+router.use('/', npcDialogRoutes);
 
 
 

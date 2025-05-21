@@ -1,0 +1,63 @@
+<%- include('../partials/header/header.ejs'); %>
+    <%- include('../partials/menu/menuPlayer'); %>
+
+        <div class="container mt-5">
+            <div class="game-screen">
+
+                <!-- Botão para exibir/ocultar a aventura -->
+                <button class="btn btn-warning show-adventure-btn" onclick="toggleAdventure()">📖 Ver Aventura</button>
+
+                <!-- Texto da aventura -->
+                <div class="adventure-text" id="adventureBox">
+                    <h5>
+                        <%= adventure.name %>
+                    </h5>
+                    <p>
+                        <%= adventure.description %>
+                    </p>
+                </div>
+
+                <!-- Info da ação -->
+                <div class="info-box" id="action-info">
+                    <strong>Detalhes da Ação:</strong>
+                    <p id="info-text">Passe o mouse em uma ação para ver detalhes.</p>
+                </div>
+
+                <!-- Fala do NPC (da ação física por padrão) -->
+                <div class="npc-dialog">
+                    <img src="/img/adventures/01.jpg" alt="NPC" class="npc-face"  >
+                    <p id="npc-text">
+  <% if (actions[0].npcDialog) { %>
+    <strong><%= actions[0].npcDialog.npcName %>:</strong>
+    <%= actions[0].npcDialog.dialogText %>
+  <% } else { %>
+    <strong>???</strong>: ...
+  <% } %>
+</p>
+ 
+                </div>
+
+                <!-- Botões de ação ,-->
+
+                <div class="action-buttons">
+                    <button id="1" onmouseover="showInfo('<%= actions[0].description %>')"
+                        onclick="chooseAction('<%= actions[0].physicalAction %>')">
+                        💪 Ação Física
+                    </button>
+
+                    <button id="2" onmouseover="showInfo('<%= actions[1].description %>')"
+                        onclick="chooseAction('<%= actions[1].socialAction %>')">
+                        🗣️ Ação Social
+                    </button>
+
+                    <button id="3" onmouseover="showInfo('<%= actions[2].description %>')"
+                        onclick="chooseAction('<%= actions[2].mentalAction %>')">
+                        🧠 Ação Mental
+                    </button>
+                </div>
+
+            </div>
+        </div>
+        </div>
+
+        <%- include('../partials/footer/footer.ejs'); %>

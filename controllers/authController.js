@@ -36,9 +36,9 @@ const authController = {
       if (user.role === 'admin') {
         return res.redirect('/admin/dashboard');
       } else if (user.role === 'teacher') {
-        return res.redirect('/teacher/dashboard');
+        return res.redirect('/dashboardTeacher');
       } else {
-        return res.redirect('/player/dashboard');
+        return res.redirect('/dashboardUser');
       }
 
     } catch (error) {

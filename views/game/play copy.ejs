@@ -1,63 +1,69 @@
 <%- include('../partials/header/header.ejs'); %>
     <%- include('../partials/menu/menuPlayer'); %>
 
-        <div class="container mt-5">
-            <div class="game-screen">
+        <div class="containerSQ">
+            <div class="containerGamePlay">
+                <div id="btnHover" class="containerScene" onmouseover="showDivA()" onmouseout="hideDivA()" >
+                    Cena 01: Chegada à Escola
+                </div>
+                <div id="containerSenaText" class="containerSenaText">
+                    <p>📘 Informações adicionais sobre esta cena ou ações possíveis...</p>
+                </div>
 
-                <!-- Botão para exibir/ocultar a aventura -->
-                <button class="btn btn-warning show-adventure-btn" onclick="toggleAdventure()">📖 Ver Aventura</button>
+                <div class="containerText">
+                    Você entrou na sala de aula e todos os olhares se voltam para você.
+                </div>
 
-                <!-- Texto da aventura -->
-                <div class="adventure-text" id="adventureBox">
-                    <h5>
-                        <%= adventure.name %>
-                    </h5>
-                    <p>
-                        <%= adventure.description %>
+            <!-- CONTAINER DOS CARDS NA LATERAL DIREITA -->
+<div class="containerBtn" style="">
+  
+  <div class="cardAction" onclick="chooseAction('física')">
+    <h5>🏃 Ação Física</h5>
+    <p>Desvie das cadeiras e vá até o fundo da sala.</p>
+    <small>Dificuldade: ⭐⭐⭐⭐</small>
+  </div>
+
+  <div class="cardAction" onclick="chooseAction('social')">
+    <h5>🗣️ Ação Social</h5>
+    <p>Cumprimente todos educadamente e sorria.</p>
+    <small>Dificuldade: ⭐⭐⭐</small>
+  </div>
+
+  <div class="cardAction" onclick="chooseAction('mental')">
+    <h5>🧠 Ação Mental</h5>
+    <p>Observe os lugares estratégicos para se sentar.</p>
+    <small>Dificuldade: ⭐⭐⭐⭐⭐</small>
+  </div>
+
+</div>
+
+
+                <!-- DIV do NPC: inicialmente oculta -->
+                <div class="containerNPC" style="display: none;">
+                    <img class="img-Npc" src="/img/adventures/01.jpg" alt="NPC">
+                    <p style="margin: 0;">
+                        <strong>Professora Helena:</strong> Seja bem-vinda, pegue seu material e se acomode. A aula já
+                        vai começar!
                     </p>
-                </div>
-
-                <!-- Info da ação -->
-                <div class="info-box" id="action-info">
-                    <strong>Detalhes da Ação:</strong>
-                    <p id="info-text">Passe o mouse em uma ação para ver detalhes.</p>
-                </div>
-
-                <!-- Fala do NPC (da ação física por padrão) -->
-                <div class="npc-dialog">
-                    <img src="/img/adventures/01.jpg" alt="NPC" class="npc-face"  >
-                    <p id="npc-text">
-  <% if (actions[0].npcDialog) { %>
-    <strong><%= actions[0].npcDialog.npcName %>:</strong>
-    <%= actions[0].npcDialog.dialogText %>
-  <% } else { %>
-    <strong>???</strong>: ...
-  <% } %>
-</p>
- 
-                </div>
-
-                <!-- Botões de ação ,-->
-
-                <div class="action-buttons">
-                    <button id="1" onmouseover="showInfo('<%= actions[0].description %>')"
-                        onclick="chooseAction('<%= actions[0].physicalAction %>')">
-                        💪 Ação Física
-                    </button>
-
-                    <button id="2" onmouseover="showInfo('<%= actions[1].description %>')"
-                        onclick="chooseAction('<%= actions[1].socialAction %>')">
-                        🗣️ Ação Social
-                    </button>
-
-                    <button id="3" onmouseover="showInfo('<%= actions[2].description %>')"
-                        onclick="chooseAction('<%= actions[2].mentalAction %>')">
-                        🧠 Ação Mental
-                    </button>
                 </div>
 
             </div>
         </div>
-        </div>
+
+        <script>
+            function showDivA() {
+                document.getElementById('containerSenaText').style.display = 'block';
+            }
+
+            function hideDivA() {
+                document.getElementById('containerSenaText').style.display = 'none';
+            }
+        </script>
+
+        <style>
+
+
+
+        </style>
 
         <%- include('../partials/footer/footer.ejs'); %>

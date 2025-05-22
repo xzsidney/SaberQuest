@@ -1,120 +1,72 @@
 <%- include('../partials/header/header.ejs'); %>
     <%- include('../partials/menu/menuPlayer'); %>
 
-        <style>
-            .scene-background {
-                background-image: url('/img/adventures/03.jpg');
-                background-size: cover;
-                background-position: center;
-                position: relative;
-                height: 100vh;
-                color: white;
-                margin-top: 100px;
-            }
+        <div class="containerSQ">
+            <div class="containerGamePlay">
+                <div id="btnHover" class="containerScene" onmouseover="showDivA()">
+                    <strong id="sceneTitle">Cena 01: Chegada à Escola</strong>
+                </div>
+                <div id="containerSenaText" class="containerSenaText scrollGame" onmouseout="hideDivA()"
+                    onmouseover="showDivA()">
+                    <h3 id="sceneDesc">📘Descrição do Ambiente:</h3>
+                    <p>&nbsp;</p>
+                    <p id="sceneTextDesc"> Informações adicionais sobre esta cena ou ações possíveis...</p>
+                    <p>&nbsp;</p>
+                    <h3 id="sceneChar">Sensação do Personagem:</h3>
+                      <p id="sceneTextChar"> Informações adicionais sobre esta cena ou ações possíveis...</p>
+                </div>
 
-            .scene-overlay {
-                background-color: rgba(0, 0, 0, 0.6);
-                padding: 2rem;
-                border-radius: 12px;
-                max-width: 700px;
-                margin: auto;
-                margin-top: 20px;
-            }
-            .scene-action {
-                 
-                padding: 2rem;
-                border-radius: 12px;
-                max-width: 700px;
-                margin: auto;
-                margin-top: 200px;
-            }
-            
+                <div class="containerDice">
 
 
-            .npc-dialog {
-                background-color: #fff;
-                color: #000;
-                border-radius: 8px;
-                padding: 1rem;
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-            }
+                    Você entrou na sala de aula e todos os olhares se voltam para você.
+                </div>
 
-            .npc-dialog img {
-                width: 80px;
-                height: 80px;
-                border-radius: 50%;
-            }
 
-            .action-button {
-                width: 100%;
-                margin-top: 10px;
-            }
 
-            .scene-title {
-                position: absolute;
-                top: 10px;
-                right: 20px;
-                font-weight: bold;
-                font-size: 1.5rem;
-                background: rgba(255, 255, 255, 0.7);
-                color: #000;
-                padding: 0.5rem 1rem;
-                border-radius: 8px;
-            }
-        </style>
+                <div class="containerBtn" style="visibility: hidden;" id="containerBtn">
 
-        <div class="container mt-5">
-            <div class="containerGame1">
-                <div class="scene-background">
-                    <div class="scene-title">Cena 043: Rumo à Sala de Aula</div>
+                    <div id="physical" class="cardAction" onclick="chooseAction(10)"
+                        style="border-left: 6px solid #f30707;">
+                        <h5 id="title-physical">🏃 Physical Action</h5>
+                        <p id="desc-physical">Dodge the chairs and reach the back of the room.</p>
+                        <small id="diff-physical">Difficulty: ⭐⭐⭐⭐</small>
+                    </div>
 
-                    <div class="container1 pt-5">
-                        <div class="scene-overlay text-center">
-                            <p>
-                                A porta da sala de castigo se fecha atrás dele. O corredor à frente está mais calmo. O
-                                aluno caminha com passos decididos — o próximo passo é a sala de aula.
-                            </p>
-                        </div>
+                    <div id="social" class="cardAction" onclick="chooseAction(20)"
+                        style="border-left: 6px solid #f0c000;">
+                        <h5 id="title-social">🗣️ Social Action</h5>
+                        <p id="desc-social">Greet everyone with a smile.</p>
+                        <small id="diff-social">Difficulty: ⭐⭐⭐</small>
+                    </div>
 
-                        <div class="npc-dialog mt-5">
-                            <img src="/img/adventures/01.jpg" alt="Professor Elias">
-                            <div>
-                                <strong>Prof. Elias:</strong><br>
-                                Ah, você é o novo aluno? Entre, temos muito para aprender hoje!
-                            </div>
-                        </div>
-                        <div class="scene-action">
-                            <div class="row mt-4">
-                                <div class="col-md-4">
-                                    <button class="btn btn-primary action-button">
-                                        📘 Participar da aula<br><small>Usa: Cognição (Dificuldade: 5)</small>
-                                    </button>
-                                </div>
-                                <div class="col-md-4">
-                                    <button class="btn btn-success action-button">
-                                        🗣️ Fazer uma pergunta<br><small>Usa: Vontade (Dificuldade: 4)</small>
-                                    </button>
-                                </div>
-                                <div class="col-md-4">
-                                    <button class="btn btn-warning action-button">
-                                        🤫 Ficar em silêncio<br><small>Usa: Percepção (Dificuldade: 3)</small>
-                                    </button>
-                                </div>
-                            </div>
+                    <div id="mental" class="cardAction" onclick="chooseAction(30)"
+                        style="border-left: 6px solid #007bff;">
+                        <h5 id="title-mental">🧠 Mental Action</h5>
+                        <p id="desc-mental">Observe and choose a strategic seat.</p>
+                        <small id="diff-mental">Difficulty: ⭐⭐⭐⭐⭐</small>
+                    </div>
+                </div>
 
-                            <div class="text-center mt-4">
-                                <button class="btn btn-danger btn-lg">🎲 Próxima</button>
-                            </div>
-                        </div>
+                <div class="containerNPC" id="containerNPC" style="visibility: hidden;">
+                    <img src="/img/adventures/01.jpg" alt="NPC" class="dialog-image" id="npcImage">
+                    <div class="dialog-text">
+                        <p id="npcSpeaker"><strong>Professora Helena:</strong> Seja bem-vinda! Pegue seu material e se acomode. A aula
+                            já vai começar.</p>
                     </div>
                 </div>
 
             </div>
         </div>
 
+        <script>
+
+        </script>
+
+        <style>
 
 
+
+        </style>
 
         <%- include('../partials/footer/footer.ejs'); %>

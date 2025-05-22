@@ -23,4 +23,12 @@ router.get('/dashboardTeacher', (req, res) => {
   });
 });
 
+
+router.get('/play', (req, res) => {
+  res.render('game/play', {
+    title: 'Bem-vindo ao SaberQuest',
+    user: req.session.user || null  
+  });
+});
+
 module.exports = router;

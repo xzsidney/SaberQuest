@@ -1,156 +1,99 @@
-function toggleAdventure() {
-    // Pega o elemento da aventura
-    const adventureBox = document.getElementById('adventureBox');
+//
 
-    // Verifica o estado atual da visibilidade
-    if (adventureBox.style.display === "none") {
-        // Se estiver oculto, exibe o conteúdo
-        adventureBox.style.display = "block";
-    } else {
-        // Se estiver visível, oculta o conteúdo
-        adventureBox.style.display = "none";
-    }
-}
- // Exibe a descrição ao passar o mouse
-function showInfo(text) { 
-  document.getElementById("info-text").innerText = text;
+// Função para controle de inico da aventura 
+function hideDivA() {
+  document.getElementById('containerSenaText').style.display = 'none';
 }
 
- function chooseAction11(aresultId) {
-  alert("Você escolheu a ação com ID: " + aresultId);
-
-  // Isso depois virá do resultado da rolagem (success ou fail → próximo action)
-  const actionsId = aresultId;
-
-  fetch(`/playAdventure/${actionsId}`)
-    .then(res => res.json())
-    .then(data => { 
-      const action = data.action[0];
-     const npcDialog = data.action[0].npcDialog; 
-    
-
-      if (!action) {
-        console.warn("Ação não encontrada.");
-        return;
-      }
-      
-      if (npcDialog) {
-        document.getElementById("npc-text").innerHTML =
-          `<strong>${npcDialog.npcName}:</strong> ${npcDialog.dialogText}`;
-      } else {
-        document.getElementById("npc-text").innerHTML =
-          `<strong>???</strong>: ...`;
-      }
-      
-       
-   
-     
-     
-      // Atualiza os botões com os novos valores
-      document.getElementById("1").setAttribute("onmouseover", `showInfo('${action.description}')`);
-      document.getElementById("1").setAttribute("onclick", `chooseAction(${action.physicalAction})`);
- 
-      let getsocialAction = getActionById(action.socialAction);
-      document.getElementById("2").setAttribute("onmouseover", `showInfo('${getsocialAction}')`);
-      document.getElementById("2").setAttribute("onclick", `chooseAction(${action.socialAction})`);
-
-        let getmentalAction = getActionById(action.mentalAction);
-      document.getElementById("3").setAttribute("onmouseover", `showInfo('${getmentalAction}')`);
-      document.getElementById("3").setAttribute("onclick", `chooseAction(${action.mentalAction})`);
-     
-    })
-    .catch(err => {
-      console.error("Erro ao buscar ações:", err);
-    });
-}
-
-async function chooseAction(aresultId) {
- 
-
-  const actionsId = aresultId;
-
-  try {
-    const res = await fetch(`/playAdventure/${actionsId}`);
-    const data = await res.json();
-    const action = data.action[0];
-    const npcDialog = action.npcDialog;
-
-    if (!action) {
-      console.warn("Ação não encontrada.");
-      return;
-    }
-
-    // Atualiza fala do NPC
-    if (npcDialog) {
-      document.getElementById("npc-text").innerHTML =
-        `<strong>${npcDialog.npcName}:</strong> ${npcDialog.dialogText}`;
-    } else {
-      document.getElementById("npc-text").innerHTML =
-        `<strong>???</strong>: ...`;
-    }
-
-    const physicalActionObj = await getActionById(action.physicalAction);
-    // Atualiza botão físico (usa o próprio objeto atual)
-    document.getElementById("1").setAttribute("onmouseover", `showInfo('${physicalActionObj.description}')`);
-    document.getElementById("1").setAttribute("onclick", `chooseAction(${action.physicalAction})`);
-
-    // Busca texto da ação social
-    const socialActionObj = await getActionById(action.socialAction);
-    if (socialActionObj) {
-      document.getElementById("2").setAttribute("onmouseover", `showInfo('${socialActionObj.description}')`);
-      document.getElementById("2").setAttribute("onclick", `chooseAction(${action.socialAction})`);
-    }
-
-    // Busca texto da ação mental
-    const mentalActionObj = await getActionById(action.mentalAction);
-    if (mentalActionObj) {
-      document.getElementById("3").setAttribute("onmouseover", `showInfo('${mentalActionObj.description}')`);
-      document.getElementById("3").setAttribute("onclick", `chooseAction(${action.mentalAction})`);
-    }
-
-  } catch (err) {
-    console.error("Erro ao buscar ações:", err);
+function showDivA() {
+  document.getElementById('containerSenaText').style.display = 'block';
+  document.getElementById('containerBtn').style.visibility = 'visible';
+  let exibir = false;
+  if (exibir === true) {
+    document.getElementById('containerNPC').style.visibility = 'visible';
+  } else {
+    //vai alguma outra regra
   }
+
+}
+
+// aqui vai a logica do bnt de ação da cena
+
+
+function chooseAction(actionId) {
+  const roll = Math.floor(Math.random() * 10) + 1;
+
+  // Gerar novos IDs numéricos fictícios com base no ID atual
+  const newPhysicalId = actionId + 1;
+  const newSocialId = actionId + 2;
+  const newMentalId = actionId + 3;
+  const npcSpeak = true
+
+  if (npcSpeak === true) {
+    document.getElementById('containerNPC').style.visibility = 'visible';
+    document.getElementById("npcSpeaker").innerHTML = "<strong>Professora Helena:</strong> Seja bem-vinda! Pegue seu material e se acomode. A aula já vai começar. Rolagem: " + roll;
+    document.getElementById("npcImage").setAttribute("src", "/img/adventures/02.jpg");
+
+  }
+
+  // Atualiza o titulo da Cena e o texto
+  document.getElementById("sceneTitle").innerText = "Cena 02: Correndo na Escola" + roll;
+  document.getElementById("sceneDesc").innerText = "Cena 02: Descrição" + roll;
+  document.getElementById("sceneTextDesc").innerText = "Cena 02: Descrição" + roll;
+  document.getElementById("sceneChar").innerText = "Cena 02: Char" + roll;
+  document.getElementById("sceneTextChar").innerText = "Cena 02: Char Texto" + roll;
+
+  // Atualiza oos dados dos BNT ação
+  document.getElementById("title-physical").innerText = "💪 Brave Tackle";
+  document.getElementById("desc-physical").innerText = "You charge forward and leap over desks.";
+  document.getElementById("diff-physical").innerText = "Difficulty: " + "⭐".repeat(roll);
+
+  document.getElementById("title-social").innerText = "🗣️ Class Clown";
+  document.getElementById("desc-social").innerText = "You crack a joke to ease the tension.";
+  document.getElementById("diff-social").innerText = "Difficulty: " + "⭐".repeat(roll);
+
+
+  document.getElementById("title-mental").innerText = "🧠 Logical Scan";
+  document.getElementById("desc-mental").innerText = "You calculate where the teacher is most distracted.";
+  document.getElementById("diff-mental").innerText = "Difficulty: " + "⭐".repeat(roll);
+
+
+  // Atualiza os onClick com novos IDs inteiros
+  document.getElementById("physical").setAttribute("onclick", `chooseAction(${newPhysicalId})`);
+  document.getElementById("social").setAttribute("onclick", `chooseAction(${newSocialId})`);
+  document.getElementById("mental").setAttribute("onclick", `chooseAction(${newMentalId})`);
+
+  console.log(`🎲 Rolado: ${roll} | Ação ID recebida: ${actionId}`);
 }
 
 
- 
-function getActionById(id) {
-  return fetch(`/playAdventure/type/${id}`)  
-    .then(res => res.json())
-    .then(data => data.action)
-    .catch(err => {
-      console.error('Erro ao buscar ação:', err);
-      return null;
-    });
+
+
+
+
+// Regra para jogar o dado 
+function rollDice() {
+  const roll = Math.floor(Math.random() * 10) + 1;
+  const resultEl = document.getElementById('roll-result');
+  const penaltyEl = document.getElementById('penalty-effect');
+
+  resultEl.innerHTML = '🎲 Rolando dado...';
+  penaltyEl.style.display = 'none';
+
+  setTimeout(() => {
+    resultEl.innerHTML = `🎲 Resultado: ${roll}`;
+
+    if (roll >= 6) {
+      resultEl.innerHTML += '<br>✅ Sucesso!';
+    } else {
+      resultEl.innerHTML += '<br>❌ Falha!';
+      penaltyEl.style.display = 'block';
+
+      setTimeout(() => {
+        penaltyEl.style.display = 'none';
+      }, 2500);
+    }
+  }, 1000);
 }
 
 
-
-
-
-/*
-function atualizarBotoesComNovasAcoes(acoes) {
-  acoes.forEach((acao, index) => {
-    const botao = document.getElementById((index + 1).toString());
-
-    const tipo = acao.physicalAction ? '💪 Ação Física' :
-      acao.socialAction ? '🗣️ Ação Social' :
-        acao.mentalAction ? '🧠 Ação Mental' : '❓ Ação';
-
-    botao.innerText = tipo;
-    botao.setAttribute('onmouseover', `showInfo('${acao.description}')`);
-    botao.setAttribute('onclick', `chooseAction(${acao.id})`);
-  });
-}
-
-function atualizarNpc(dialogo) {
-  if (!dialogo) return;
-
-  const npcFace = document.querySelector(".npc-face");
-  const npcText = document.querySelector(".npc-dialog p");
-
-  npcFace.src = `/img/adventures/${dialogo.actionResultId}.jpg`;
-  npcText.innerHTML = `<strong>${dialogo.npcName}:</strong> ${dialogo.dialogText}`;
-}
-*/

@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 const authController = {
   loginPage: (req, res) => {
-    res.render('auth/login', { title: 'Login', error: null });
+    res.render('auth/login', { title: 'Login', error: null ,user: null  }); 
   },
 
   login: async (req, res) => {

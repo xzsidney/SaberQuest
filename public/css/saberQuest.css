@@ -148,7 +148,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  margin-top: 50px;
+  margin-top: 5%;
 }
 
 
@@ -182,13 +182,11 @@ body {
 }
 
 .containerGamePlay {
-  background-color: rgba(0, 0, 0, 0.5);
-  /* leve escuridão sobre o fundo */
+  background-color: rgba(0, 0, 0, 0.5); 
   border: 5px solid #f0ec19;
   width: 90%;
   max-width: 1000px;
-  min-height: 700px;
-  padding: 40px;
+  min-height: 700px; 
   color: white;
   font-family: 'Verdana', sans-serif;
   position: relative;
@@ -196,7 +194,8 @@ body {
   border-radius: 20px;
   backdrop-filter: blur(4px);
   overflow: hidden;
-  background: url('/img/adventures/03.jpg') no-repeat center center fixed;
+ 
+   
 }
 
 /* ===== Container   do Jogo ===== */
@@ -205,7 +204,7 @@ body {
 
 .containerScene {
   position: absolute;
-  width: 400px;
+  width: 550px;
   top: 10px;
   left: 10px;
   background-color: rgba(29, 126, 237, 0.5);
@@ -219,8 +218,8 @@ body {
   display: none;
   position: absolute;
   top: 70px;
-  left: 30px;
-  width: 50%;
+  left: 10px;
+  width: 550px;
   height: 450px;
   background-color: rgba(29, 126, 237, 0.5);
   color: #03010f;

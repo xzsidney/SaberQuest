@@ -2,71 +2,83 @@
     <%- include('../partials/menu/menuPlayer'); %>
 
         <div class="containerSQ">
-            <div class="containerGamePlay">
+            <div class="containerGamePlay" id="containerGamePlay"
+     style="background-image: url('/img/scene/0<%= scene.id %>.png');  
+            background-size: cover; 
+            background-repeat: no-repeat;
+            background-position: center center;">
                 <div id="btnHover" class="containerScene" onmouseover="showDivA()">
-                    <strong id="sceneTitle">Cena 01: Chegada à Escola</strong>
+                    <strong id="sceneTitle"> Cena 0<%= scene.id %> :<%= scene.title %> </strong>
                 </div>
                 <div id="containerSenaText" class="containerSenaText scrollGame" onmouseout="hideDivA()"
                     onmouseover="showDivA()">
                     <h3 id="sceneDesc">📘Descrição do Ambiente:</h3>
-                    <p>&nbsp;</p>
-                    <p id="sceneTextDesc"> Informações adicionais sobre esta cena ou ações possíveis...</p>
-                    <p>&nbsp;</p>
-                    <h3 id="sceneChar">Sensação do Personagem:</h3>
-                      <p id="sceneTextChar"> Informações adicionais sobre esta cena ou ações possíveis...</p>
+                    <p id="sceneTextDesc">
+                        <%= scene.environmentDescription %>
+                    </p>
+                    <p>&nbsp;</p>  
                 </div>
 
-                <div class="containerDice">
+                <% const firstAction= scene.firstAction ;
+                 const  secondAction=scene.secondAction ;
+                 const  thirdAction=scene.thirdAction ; 
+                 const textfirstAction = sceneAll[firstAction-1] ;
+                  const trextSecondAction = sceneAll[secondAction-1] ;
+                   const textThirdAction = sceneAll[thirdAction-1] ; 
+                  
+                  %>
 
+                    <div class="containerBtn" style="visibility: hidden;" id="containerBtn">
 
-                    Você entrou na sala de aula e todos os olhares se voltam para você.
-                </div>
+                        <% if (textfirstAction) { %>
+                            <div id="firstAction" class="cardAction" onclick="chooseAction('<%= firstAction %>')"
+                                style="border-left: 6px solid #f30707;">
+                                <h5 id="title-physical">🏃 <%= textfirstAction.title %>
+                                </h5>
+                                <small id="diff-physical">
+                                    Difficulty: <%= "⭐" .repeat(textfirstAction.difficulty || 0) %>
+                                </small>
+                            </div>
+                            <% } %>
 
+                                <% if (trextSecondAction) { %>
+                                    <div id="secondAction" class="cardAction"
+                                        onclick="chooseAction('<%= secondAction %>')"
+                                        style="border-left: 6px solid #f0c000;">
+                                        <h5 id="title-social">🗣️ <%= trextSecondAction.title %>
+                                        </h5>
+                                        <small id="diff-social">
+                                            Difficulty: <%= "⭐" .repeat(trextSecondAction.difficulty || 0) %>
+                                        </small>
+                                    </div>
+                                    <% } %>
 
+                                        <% if (textThirdAction) { %>
+                                            <div id="thirdAction" class="cardAction"
+                                                onclick="chooseAction('<%= thirdAction %>')"
+                                                style="border-left: 6px solid #007bff;">
+                                                <h5 id="title-mental">🧠 <%= textThirdAction.title %>
+                                                </h5>
+                                                <small id="diff-mental">
+                                                    Difficulty: <%= "⭐" .repeat(textThirdAction.difficulty || 0)
+                                                        %>
+                                                </small>
+                                            </div>
+                                            <% } %>
 
-                <div class="containerBtn" style="visibility: hidden;" id="containerBtn">
-
-                    <div id="physical" class="cardAction" onclick="chooseAction(10)"
-                        style="border-left: 6px solid #f30707;">
-                        <h5 id="title-physical">🏃 Physical Action</h5>
-                        <p id="desc-physical">Dodge the chairs and reach the back of the room.</p>
-                        <small id="diff-physical">Difficulty: ⭐⭐⭐⭐</small>
                     </div>
 
-                    <div id="social" class="cardAction" onclick="chooseAction(20)"
-                        style="border-left: 6px solid #f0c000;">
-                        <h5 id="title-social">🗣️ Social Action</h5>
-                        <p id="desc-social">Greet everyone with a smile.</p>
-                        <small id="diff-social">Difficulty: ⭐⭐⭐</small>
-                    </div>
 
-                    <div id="mental" class="cardAction" onclick="chooseAction(30)"
-                        style="border-left: 6px solid #007bff;">
-                        <h5 id="title-mental">🧠 Mental Action</h5>
-                        <p id="desc-mental">Observe and choose a strategic seat.</p>
-                        <small id="diff-mental">Difficulty: ⭐⭐⭐⭐⭐</small>
+                    <div class="containerNPC" id="containerNPC" style="visibility: hidden;">
+                        <img src="/img/adventures/01.jpg" alt="NPC" class="dialog-image" id="npcImage">
+                        <div class="dialog-text">
+                            <p id="npcSpeaker"><strong>
+                                    <%= npc.npcName %>:
+                                </strong>
+                                <%= npc.dialogText %>
+                            </p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="containerNPC" id="containerNPC" style="visibility: hidden;">
-                    <img src="/img/adventures/01.jpg" alt="NPC" class="dialog-image" id="npcImage">
-                    <div class="dialog-text">
-                        <p id="npcSpeaker"><strong>Professora Helena:</strong> Seja bem-vinda! Pegue seu material e se acomode. A aula
-                            já vai começar.</p>
-                    </div>
-                </div>
-
             </div>
         </div>
-
-        <script>
-
-        </script>
-
-        <style>
-
-
-
-        </style>
-
         <%- include('../partials/footer/footer.ejs'); %>
